@@ -57,7 +57,7 @@ void displayMenu() {
     std::cout << "0. Exit" << std::endl << std::endl;
 }
 
-int getUserInput() {
+int getUserMenuChoice() {
     int choice;
     std::cout << "Choose option (1-6) or 0 to exit: ";
     std::cin >> choice;
@@ -70,7 +70,7 @@ int main() {
     
     while(true) {
         displayMenu();
-        switch(getUserInput()) {
+        switch(getUserMenuChoice()) {
             case 1:
                 contacts.push_back(addContact());
                 break;
