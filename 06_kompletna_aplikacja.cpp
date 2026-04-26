@@ -65,32 +65,38 @@ int getUserMenuChoice() {
     return choice;
 }
 
+bool executeMenuOption(std::vector<Contact> &contacts) {
+    switch(getUserMenuChoice()) {
+        case 1:
+            contacts.push_back(addContact());
+            break;
+        case 2:
+            displayAllContacts(contacts);
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 0:
+            return false;
+        default:
+            std::cout << "Unexpected input. Choose between (1-6) or 0 to exit" << std::endl;
+            break;
+    }
+    return true;
+}
+
 int main() {
     std::vector<Contact> contacts;
-    
-    while(true) {
+    bool isWorking = true;
+
+    while(isWorking) {
         displayMenu();
-        switch(getUserMenuChoice()) {
-            case 1:
-                contacts.push_back(addContact());
-                break;
-            case 2:
-                displayAllContacts(contacts);
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 0:
-                return 0;
-            default:
-                std::cout << "Unexpected input. Choose between (1-6) or 0 to exit" << std::endl;
-                continue;
-        }
+        isWorking = executeMenuOption(contacts);
     }
 
     return 0;
