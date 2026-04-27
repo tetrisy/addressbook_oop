@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <regex>
 
@@ -22,15 +23,28 @@ bool emailValidation(std::string email) {
     }
 }
 
+bool phoneNumberValidation(std::string phoneNumber) {
+    const std::regex phoneReg("^\\d{9}$");
+    
+    if(std::regex_match(phoneNumber, phoneReg)) {
+        return true;
+    } else {
+        std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
+        return false;
+    }
+}
+
 Contact addContact() {
     Contact contact;
-    std::cout << "==== Adding contact menu ====" << std::endl;
+    std::cout << "==== Adding contact menu ====" << std::endl; 
     std::cout << "Enter first name: ";
-    std::cin >> contact.firstName;
-    std::cout << "Enter last name: ";
+    std::getline(std::cin, contact.firstName); 
+    std::cout << std::endl << "Enter last name: ";
     std::cin >> contact.lastName;
-    std::cout << "Enter phone number: ";
-    std::cin >> contact.phoneNumber;
+    do {
+        std::cout << "Enter phone number: ";
+        std::cin >> contact.phoneNumber;
+    } while(phoneNumberValidation(contact.phoneNumber));
     do {
         std::cout << "Enter email: ";
         std::cin >> contact.email;
