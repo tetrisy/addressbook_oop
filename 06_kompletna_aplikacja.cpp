@@ -4,6 +4,7 @@
 #include <regex>
 
 struct Contact {
+    int id = 0;
     std::string firstName;
     std::string lastName;
     std::string phoneNumber;
@@ -57,11 +58,14 @@ Contact addContact() {
     std::getline(std::cin, contact.city);
     std::cout << std::endl;
 
+    contact.id++;
+
     return contact;
 }
 
 void displayContact(const Contact& contact) {
     std::cout << "=== Contact information ===" << std::endl;
+    std::cout << "ID: " << contact.id << std::endl;
     std::cout << "Frist Name: " << contact.firstName << std::endl;
     std::cout << "Last Name: " << contact.lastName << std::endl;
     std::cout << "Phone Number: " << contact.phoneNumber << std::endl;
