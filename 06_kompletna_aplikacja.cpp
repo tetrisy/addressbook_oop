@@ -86,14 +86,13 @@ void displayMenu() {
     std::cout << "2. Display all contacts" << std::endl;
     std::cout << "3. Edit contact" << std::endl;
     std::cout << "4. Delete contact" << std::endl;
-    std::cout << "5. Edit contact" << std::endl;
-    std::cout << "6. Search contact" << std::endl;
+    std::cout << "5. Search contact" << std::endl;
     std::cout << "0. Exit" << std::endl << std::endl;
 }
 
 int getUserMenuChoice() {
     int choice;
-    std::cout << "Choose option (1-6) or 0 to exit: ";
+    std::cout << "Choose option (1-5) or 0 to exit: ";
     std::cin >> choice;
     std::cout << std::endl;
     return choice;
