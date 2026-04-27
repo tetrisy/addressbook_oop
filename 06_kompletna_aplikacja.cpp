@@ -38,22 +38,23 @@ Contact addContact() {
     Contact contact;
     std::cout << "==== Adding contact menu ====" << std::endl; 
     std::cout << "Enter first name: ";
+    std::cin.ignore();
     std::getline(std::cin, contact.firstName); 
-    std::cout << std::endl << "Enter last name: ";
-    std::cin >> contact.lastName;
+    std::cout << "Enter last name: ";
+    std::getline(std::cin, contact.lastName);
     do {
         std::cout << "Enter phone number: ";
         std::cin >> contact.phoneNumber;
-    } while(phoneNumberValidation(contact.phoneNumber));
+    } while(!phoneNumberValidation(contact.phoneNumber));
     do {
         std::cout << "Enter email: ";
         std::cin >> contact.email;
     } while(!emailValidation(contact.email));
-    
     std::cout << "Enter street: ";
-    std::cin >> contact.street;
+    std::cin.ignore();
+    std::getline(std::cin, contact.street);
     std::cout << "Enter city: ";
-    std::cin >> contact.city;
+    std::getline(std::cin, contact.city);
     std::cout << std::endl;
 
     return contact;
