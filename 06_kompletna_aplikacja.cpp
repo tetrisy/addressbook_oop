@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <regex>
 
 struct Contact {
     std::string firstName;
@@ -10,6 +11,17 @@ struct Contact {
     std::string city;
 };
 
+bool emailValidation(std::string email) {
+    const std::regex emailReg(R"([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
+
+    if(std::regex_match(email, emailReg)) {
+        return true;
+    } else {
+        std::cout << "Invalid email! Enter a valid email address." << std::endl;
+        return false;
+    }
+}
+
 Contact addContact() {
     Contact contact;
     std::cout << "==== Adding contact menu ====" << std::endl;
@@ -19,8 +31,11 @@ Contact addContact() {
     std::cin >> contact.lastName;
     std::cout << "Enter phone number: ";
     std::cin >> contact.phoneNumber;
-    std::cout << "Enter email: ";
-    std::cin >> contact.email;
+    do {
+        std::cout << "Enter email: ";
+        std::cin >> contact.email;
+    } while(!emailValidation(contact.email));
+    
     std::cout << "Enter street: ";
     std::cin >> contact.street;
     std::cout << "Enter city: ";
