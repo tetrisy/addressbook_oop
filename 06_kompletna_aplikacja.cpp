@@ -101,6 +101,35 @@ void editContact(std::vector<Contact> &contacts) {
     std::cout << std::endl;
 }
 
+void deleteContact(std::vector<Contact> &contacts) {
+    int deleteID;
+    char YN;
+    do {
+        std::cout << "Enter ID of contact you want to delete: ";
+        std::cin >> deleteID;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number." << std::endl;
+            deleteID = -1;
+            continue;
+        }
+
+    } while (deleteID < 1 || deleteID > contacts.size());
+
+    do {
+        std::cout << "Are you sure you want to delete? (Y/N): ";
+        std::cin >> YN;
+    } while (YN != 'Y' && YN != 'N');
+
+    if (YN == 'Y') {
+        std::cout << "Contact deleted!" << std::endl;
+    } else {
+        return;
+    }
+}
+
 void displayContact(const Contact& contact) {
     std::cout << "=== Contact information ===" << std::endl;
     std::cout << "ID: " << contact.id << std::endl;
@@ -158,6 +187,7 @@ bool executeMenuOption(std::vector<Contact> &contacts) {
             editContact(contacts);
             break;
         case 4:
+            deleteContact(contacts);
             break;
         case 5:
             break;
