@@ -63,6 +63,34 @@ Contact addContact() {
     return contact;
 }
 
+void editContact(std::vector<Contact> &contacts) {
+    int editID;
+    do {
+        std::cout << "Enter ID of contact you want to edit: ";
+        std::cin >> editID;
+    } while (editID < 1 || editID > contacts.size());
+    
+    std::cout << "Enter first name: ";
+    std::cin.ignore();
+    std::getline(std::cin, contacts[editID - 1].firstName); 
+    std::cout << "Enter last name: ";
+    std::getline(std::cin, contacts[editID - 1].lastName);
+    do {
+        std::cout << "Enter phone number: ";
+        std::cin >> contacts[editID - 1].phoneNumber;
+    } while(!phoneNumberValidation(contacts[editID - 1].phoneNumber));
+    do {
+        std::cout << "Enter email: ";
+        std::cin >> contacts[editID - 1].email;
+    } while(!emailValidation(contacts[editID - 1].email));
+    std::cout << "Enter street: ";
+    std::cin.ignore();
+    std::getline(std::cin, contacts[editID - 1].street);
+    std::cout << "Enter city: ";
+    std::getline(std::cin, contacts[editID - 1].city);
+    std::cout << std::endl;
+}
+
 void displayContact(const Contact& contact) {
     std::cout << "=== Contact information ===" << std::endl;
     std::cout << "ID: " << contact.id << std::endl;
@@ -107,6 +135,7 @@ bool executeMenuOption(std::vector<Contact> &contacts) {
             displayAllContacts(contacts);
             break;
         case 3:
+            editContact(contacts);
             break;
         case 4:
             break;
