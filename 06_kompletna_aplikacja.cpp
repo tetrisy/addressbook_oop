@@ -120,8 +120,10 @@ void displayMenu() {
 
 int getUserMenuChoice() {
     int choice;
-    std::cout << "Choose option (1-5) or 0 to exit: ";
-    std::cin >> choice;
+    do {
+        std::cout << "Choose option (1-5) or 0 to exit: ";
+        std::cin >> choice;
+    } while (choice < 0 || choice > 5);
     std::cout << std::endl;
     return choice;
 }
