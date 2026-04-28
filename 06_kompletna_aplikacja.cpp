@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <regex>
+#include <limits>
 
 struct Contact {
     int id = 0;
@@ -123,6 +124,14 @@ int getUserMenuChoice() {
     do {
         std::cout << "Choose option (1-5) or 0 to exit: ";
         std::cin >> choice;
+        
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number." << std::endl;
+            choice = -1;
+            continue;
+        }
     } while (choice < 0 || choice > 5);
     std::cout << std::endl;
     return choice;
