@@ -69,6 +69,15 @@ void editContact(std::vector<Contact> &contacts) {
     do {
         std::cout << "Enter ID of contact you want to edit: ";
         std::cin >> editID;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number." << std::endl;
+            editID = -1;
+            continue;
+        }
+
     } while (editID < 1 || editID > contacts.size());
     
     std::cout << "Enter first name: ";
