@@ -28,14 +28,20 @@ void loadContacts(std::vector<Contact> &contacts) {
     json jsonContacts;
     file >> jsonContacts;
 
-    for (const Contact& contact: contacts) {
+    for (auto person : jsonContacts) {
+        Contact contact;
+        contact.id = person["id"];
+        contact.firstName = person["firstName"];
+        contact.lastName = person["lastName"];
+        contact.phoneNumber = person["phoneNumber"];
+        contact.email = person["email"];
+        contact.street = person["street"];
+        contact.city = person["city"];
 
+        contacts.push_back(contact);
     }
 
-    std::string line;
-    Contact tempContact;
-
-
+    std::cout << "Loaded " << contacts.size() << " contacts!" << std::endl;
     file.close();
 }
 
@@ -248,6 +254,9 @@ bool executeMenuOption(std::vector<Contact> &contacts) {
 
 int main() {
     std::vector<Contact> contacts;
+
+    loadContacts(contacts);
+
     bool isWorking = true;
 
     while(isWorking) {
