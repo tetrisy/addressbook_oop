@@ -23,6 +23,27 @@ void saveContacts(std::vector<Contact> &contacts) {
         return;
     }
 
+    file << "[" << std::endl;
+
+    for(int i = 0; i < contacts.size(); i++) {
+        file << "   {" << std::endl;
+        file << "     \"id\": " << contacts[i].id << "," << std::endl;
+        file << "     \"firstName\": \"" << contacts[i].firstName << "\"," << std::endl;
+        file << "     \"lastName\": \"" << contacts[i].lastName << "\"," << std::endl;
+        file << "     \"phoneNumber\": \"" << contacts[i].phoneNumber << "\"," << std::endl;
+        file << "     \"email\": \"" << contacts[i].email << "\"," << std::endl;
+        file << "     \"street\": \"" << contacts[i].street << "\"," << std::endl;
+        file << "     \"city\": \"" << contacts[i].city << "\"" << std::endl;
+        file << "   }";
+
+        if (i < contacts.size() - 1) {
+            file << ",";  
+        }
+    }
+
+    file << std::endl;
+    file << "]" << std::endl;
+
     file.close();
 }
 
@@ -220,6 +241,8 @@ int main() {
         displayMenu();
         isWorking = executeMenuOption(contacts);
     }
+
+    saveContacts(contacts);
 
     return 0;
 }
