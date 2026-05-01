@@ -3,6 +3,7 @@
 #include <vector>
 #include <regex>
 #include <limits>
+#include <fstream>
 
 struct Contact {
     int id = 0;
@@ -13,6 +14,17 @@ struct Contact {
     std::string street;
     std::string city;
 };
+
+void saveContacts(std::vector<Contact> &contacts) {
+    std::ofstream file("contacts.json");
+
+    if (!file.is_open()) {
+        std::cout << "Error! Couldn't open file!" << std::endl;
+        return;
+    }
+
+    file.close();
+}
 
 bool emailValidation(std::string email) {
     const std::regex emailReg(R"([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
