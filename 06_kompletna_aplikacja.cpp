@@ -4,6 +4,8 @@
 #include <regex>
 #include <limits>
 #include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::ordered_json;
 
 struct Contact {
     int id = 0;
@@ -15,35 +17,46 @@ struct Contact {
     std::string city;
 };
 
-void saveContacts(std::vector<Contact> &contacts) {
-    std::ofstream file("contacts.json");
+void loadContacts(std::vector<Contact> &contacts) {
+    std::ifstream file ("contacts.json");
 
     if (!file.is_open()) {
-        std::cout << "Error! Couldn't open file!" << std::endl;
+        std::cout << "No contacts to load." << std::endl;
         return;
     }
 
-    file << "[" << std::endl;
+    json jsonContacts;
+    file >> jsonContacts;
 
-    for(int i = 0; i < contacts.size(); i++) {
-        file << "   {" << std::endl;
-        file << "     \"id\": " << contacts[i].id << "," << std::endl;
-        file << "     \"firstName\": \"" << contacts[i].firstName << "\"," << std::endl;
-        file << "     \"lastName\": \"" << contacts[i].lastName << "\"," << std::endl;
-        file << "     \"phoneNumber\": \"" << contacts[i].phoneNumber << "\"," << std::endl;
-        file << "     \"email\": \"" << contacts[i].email << "\"," << std::endl;
-        file << "     \"street\": \"" << contacts[i].street << "\"," << std::endl;
-        file << "     \"city\": \"" << contacts[i].city << "\"" << std::endl;
-        file << "   }";
+    for (const Contact& contact: contacts) {
 
-        if (i < contacts.size() - 1) {
-            file << ",";  
-        }
     }
 
-    file << std::endl;
-    file << "]" << std::endl;
+    std::string line;
+    Contact tempContact;
 
+
+    file.close();
+}
+
+void saveContacts(std::vector<Contact> &contacts) {
+    json jsonContacts = json::array();
+
+    for (const Contact& contact : contacts) {
+        json person;
+        person["id"] = contact.id;
+        person["firstName"] = contact.firstName;
+        person["lastName"] = contact.lastName;
+        person["phoneNumber"] = contact.phoneNumber;
+        person["email"] = contact.email;
+        person["street"] = contact.street;
+        person["city"] = contact.city;
+
+        jsonContacts.push_back(person);
+    }
+
+    std::ofstream file("contacts.json");
+    file << jsonContacts.dump(4);
     file.close();
 }
 
