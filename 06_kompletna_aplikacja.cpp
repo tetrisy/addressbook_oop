@@ -8,7 +8,7 @@
 using json = nlohmann::ordered_json;
 
 struct Contact {
-    int id = 0;
+    int id;
     std::string firstName;
     std::string lastName;
     std::string phoneNumber;
@@ -41,7 +41,7 @@ void loadContacts(std::vector<Contact> &contacts) {
         contacts.push_back(contact);
     }
 
-    std::cout << "Loaded " << contacts.size() << " contacts!" << std::endl;
+    std::cout << "Loaded " << contacts.size() << " contacts!" << std::endl << std::endl;
     file.close();
 }
 
@@ -88,10 +88,11 @@ bool phoneNumberValidation(std::string phoneNumber) {
     }
 }
 
-Contact addContact() {
+Contact addContact(std::vector<Contact> &contacts) {
     Contact contact;
     std::cout << "==== Adding contact menu ====" << std::endl; 
     std::cout << "Enter first name: ";
+    contact.id = contacts.size() + 1;
     std::cin.ignore();
     std::getline(std::cin, contact.firstName); 
     std::cout << "Enter last name: ";
@@ -110,8 +111,6 @@ Contact addContact() {
     std::cout << "Enter city: ";
     std::getline(std::cin, contact.city);
     std::cout << std::endl;
-
-    contact.id++;
 
     return contact;
 }
@@ -177,6 +176,7 @@ void deleteContact(std::vector<Contact> &contacts) {
 
     if (YN == 'Y') {
         std::cout << "Contact deleted!" << std::endl;
+        contacts.erase(contacts.begin() + (deleteID - 1));
     } else {
         return;
     }
@@ -230,7 +230,7 @@ int getUserMenuChoice() {
 bool executeMenuOption(std::vector<Contact> &contacts) {
     switch(getUserMenuChoice()) {
         case 1:
-            contacts.push_back(addContact());
+            contacts.push_back(addContact(contacts));
             break;
         case 2:
             displayAllContacts(contacts);
@@ -268,4 +268,3 @@ int main() {
 
     return 0;
 }
-
