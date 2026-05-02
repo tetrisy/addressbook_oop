@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "firstName": "Szymon",
+        "lastName": "Nowakowski",
+        "phoneNumber": "123456789",
+        "email": "szymon@op.pl",
+        "street": "Morska",
+        "city": "Krakow"
+    },
+    {
+        "id": 2,
+        "firstName": "Adrian",
+        "lastName": "Malysz",
+        "phoneNumber": "987654321",
+        "email": "malysz2@gmail.com",
+        "street": "Krakowska",
+        "city": "Warszawa"
+    },
+    {
+        "id": 3,
+        "firstName": "Piotr",
+        "lastName": "Mazur",
+        "phoneNumber": "987654321",
+        "email": "mazurek@op.pl",
+        "street": "Kwietnia",
+        "city": "Krakow"
+    },
+    {
+        "id": 4,
+        "firstName": "Partycja",
+        "lastName": "Kamala",
+        "phoneNumber": "987654321",
+        "email": "pati@gmail.com",
+        "street": "Rynek",
+        "city": "Bielsko"
+    },
+    {
+        "id": 5,
+        "firstName": "Agnieszka",
+        "lastName": "Staszek",
+        "phoneNumber": "987654321",
+        "email": "aga@gmail.com",
+        "street": "Poznanska",
+        "city": "Poznan"
+    },
+    {
+        "id": 6,
+        "firstName": "Szymon",
+        "lastName": "Lasek",
+        "phoneNumber": "887321523",
+        "email": "laseksz@gmail.com",
+        "street": "Akacjowa",
+        "city": "Marzec"
+    }
+]
