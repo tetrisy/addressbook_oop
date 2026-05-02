@@ -17,6 +17,14 @@ struct Contact {
     std::string city;
 };
 
+std::string toLower(std::string phrase) {
+    for (char& c : phrase) {
+        c = tolower(c);
+    }
+
+    return phrase;
+}
+
 void loadContacts(std::vector<Contact> &contacts) {
     std::ifstream file ("contacts.json");
 
@@ -199,6 +207,33 @@ void displayAllContacts(std::vector<Contact> &contacts) {
     }
 }
 
+void searchContact(std::vector<Contact> &contacts) {
+    std::string phrase;
+    std::cout << "Enter name or phone number to search: ";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    getline(std::cin, phrase);
+
+    std::vector<int> found;
+    std::string phraseToLower = toLower(phrase);
+
+    for (int i = 0; i < contacts.size(); i++) {
+        if (toLower(contacts[i].firstName).find(phraseToLower) != std::string::npos ||
+            toLower(contacts[i].lastName).find(phraseToLower) != std::string::npos ||
+            contacts[i].phoneNumber.find(phrase) != std::string::npos) {
+                found.push_back(i);
+            } 
+    }
+
+    if (found.empty()) {
+        std::cout << "Nothing found." << std::endl;
+    }
+
+    std::cout << std::endl << "Found " << found.size() << " contacts." << std::endl << std::endl;
+    for (int id : found) {
+        displayContact(contacts[id]);
+    }
+}
+
 void displayMenu() {
     std::cout << "===== ADDRESS BOOK =====" << std::endl;
     std::cout << "1. Add contact" << std::endl;
@@ -242,6 +277,7 @@ bool executeMenuOption(std::vector<Contact> &contacts) {
             deleteContact(contacts);
             break;
         case 5:
+            searchContact(contacts);
             break;
         case 0:
             return false;
