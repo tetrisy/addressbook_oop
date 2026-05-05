@@ -37,7 +37,7 @@ std::vector<Contact> loadContacts() {
     json jsonContacts;
     file >> jsonContacts;
 
-    for (auto person : jsonContacts) {
+    for (const auto& person : jsonContacts) {
         Contact contact;
         contact.id = person["id"];
         contact.firstName = person["firstName"];
@@ -188,7 +188,7 @@ void deleteContact(std::vector<Contact> &contacts) {
     if (YN == 'Y') {
         std::cout << "Contact deleted!" << std::endl;
         contacts.erase(contacts.begin() + (deleteID - 1));
-    } 
+    }
 }
 
 void displayContact(const Contact& contact) {
