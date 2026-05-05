@@ -25,12 +25,13 @@ std::string toLower(std::string phrase) {
     return phrase;
 }
 
-void loadContacts(std::vector<Contact> &contacts) {
+std::vector<Contact> loadContacts() {
+    std::vector<Contact> contacts;
     std::ifstream file ("contacts.json");
 
     if (!file.is_open()) {
         std::cout << "No contacts to load." << std::endl;
-        return;
+        return contacts;
     }
 
     json jsonContacts;
@@ -51,9 +52,11 @@ void loadContacts(std::vector<Contact> &contacts) {
 
     std::cout << "Loaded " << contacts.size() << " contacts!" << std::endl << std::endl;
     file.close();
+
+    return contacts;
 }
 
-void saveContacts(std::vector<Contact> &contacts) {
+void saveContacts(const std::vector<Contact>& contacts) {
     json jsonContacts = json::array();
 
     for (const Contact& contact : contacts) {
@@ -289,9 +292,7 @@ bool executeMenuOption(std::vector<Contact> &contacts) {
 }
 
 int main() {
-    std::vector<Contact> contacts;
-
-    loadContacts(contacts);
+    std::vector<Contact> contacts = loadContacts();
 
     bool isWorking = true;
 
