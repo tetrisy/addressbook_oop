@@ -188,9 +188,7 @@ void deleteContact(std::vector<Contact> &contacts) {
     if (YN == 'Y') {
         std::cout << "Contact deleted!" << std::endl;
         contacts.erase(contacts.begin() + (deleteID - 1));
-    } else {
-        return;
-    }
+    } 
 }
 
 void displayContact(const Contact& contact) {
