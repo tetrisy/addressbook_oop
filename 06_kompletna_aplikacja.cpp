@@ -202,13 +202,13 @@ void displayContact(const Contact& contact) {
     std::cout << "City: " << contact.city << std::endl << std::endl;
 }
 
-void displayAllContacts(std::vector<Contact> &contacts) {
+void displayAllContacts(const std::vector<Contact>& contacts) {
     for(Contact contact : contacts) {
         displayContact(contact);
     }
 }
 
-void searchContact(std::vector<Contact> &contacts) {
+void searchContact(const std::vector<Contact>& contacts) {
     std::string phrase;
     std::cout << "Enter name or phone number to search: ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -263,7 +263,7 @@ int getUserMenuChoice() {
     return choice;
 }
 
-bool executeMenuOption(std::vector<Contact> &contacts) {
+bool executeMenuOption(std::vector<Contact> contacts) {
     switch(getUserMenuChoice()) {
         case 1:
             contacts.push_back(addContact(contacts));
