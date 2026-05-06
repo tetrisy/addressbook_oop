@@ -84,7 +84,6 @@ bool emailValidation(std::string email) {
     if(std::regex_match(email, emailReg)) {
         return true;
     } else {
-        std::cout << "Invalid email! Enter a valid email address." << std::endl;
         return false;
     }
 }
@@ -95,7 +94,6 @@ bool phoneNumberValidation(const std::string& phoneNumber) {
     if(std::regex_match(phoneNumber, phoneReg)) {
         return true;
     } else {
-        std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
         return false;
     }
 }
@@ -112,11 +110,21 @@ Contact createContact(const std::vector<Contact>& contacts) {
     do {
         std::cout << "Enter phone number: ";
         std::cin >> contact.phoneNumber;
-    } while(!phoneNumberValidation(contact.phoneNumber));
+        if(phoneNumberValidation(contact.phoneNumber)) {
+            break;
+        } else {
+            std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
+        }
+    } while(true);
     do {
         std::cout << "Enter email: ";
         std::cin >> contact.email;
-    } while(!emailValidation(contact.email));
+        if(emailValidation(contact.email)) {
+            break;
+        } else {
+            std::cout << "Invalid email! Enter a valid email address." << std::endl;
+        }
+    } while(true);
     std::cout << "Enter street: ";
     std::cin.ignore();
     std::getline(std::cin, contact.street);
