@@ -59,8 +59,9 @@ std::vector<Contact> loadContacts() {
 void saveContacts(const std::vector<Contact>& contacts) {
     json jsonContacts = json::array();
 
+    json person;
+
     for (const Contact& contact : contacts) {
-        json person;
         person["id"] = contact.id;
         person["firstName"] = contact.firstName;
         person["lastName"] = contact.lastName;
