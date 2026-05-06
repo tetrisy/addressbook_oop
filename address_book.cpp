@@ -100,7 +100,7 @@ bool phoneNumberValidation(const std::string& phoneNumber) {
     }
 }
 
-Contact addContact(std::vector<Contact> &contacts) {
+Contact createContact(const std::vector<Contact>& contacts) {
     Contact contact;
     std::cout << "==== Adding contact menu ====" << std::endl; 
     std::cout << "Enter first name: ";
@@ -267,7 +267,7 @@ int getUserMenuChoice() {
 bool executeMenuOption(std::vector<Contact> contacts) {
     switch(getUserMenuChoice()) {
         case 1:
-            contacts.push_back(addContact(contacts));
+            contacts.push_back(createContact(contacts));
             break;
         case 2:
             displayAllContacts(contacts);
