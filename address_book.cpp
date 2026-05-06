@@ -264,7 +264,7 @@ int getUserMenuChoice() {
     return choice;
 }
 
-bool executeMenuOption(std::vector<Contact> contacts) {
+bool executeMenuOption(std::vector<Contact>& contacts) {
     switch(getUserMenuChoice()) {
         case 1:
             contacts.push_back(createContact(contacts));
@@ -299,6 +299,7 @@ int main() {
         displayMenu();
         isWorking = executeMenuOption(contacts);
     }
+
 
     saveContacts(contacts);
 
