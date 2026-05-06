@@ -6,6 +6,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 using json = nlohmann::ordered_json;
+bool wasContactsChanged = false;
 
 struct Contact {
     int id;
@@ -132,6 +133,8 @@ Contact createContact(const std::vector<Contact>& contacts) {
     std::getline(std::cin, contact.city);
     std::cout << std::endl;
 
+    wasContactsChanged = true;
+
     return contact;
 }
 
@@ -170,6 +173,8 @@ void editContact(std::vector<Contact> &contacts) {
     std::cout << "Enter city: ";
     std::getline(std::cin, contacts[editID - 1].city);
     std::cout << std::endl;
+
+    wasContactsChanged = true;
 }
 
 void deleteContact(std::vector<Contact> &contacts) {
@@ -198,6 +203,8 @@ void deleteContact(std::vector<Contact> &contacts) {
         std::cout << "Contact deleted!" << std::endl;
         contacts.erase(contacts.begin() + (deleteID - 1));
     }
+
+    wasContactsChanged = true;
 }
 
 void displayContact(const Contact& contact) {
@@ -308,8 +315,9 @@ int main() {
         isWorking = executeMenuOption(contacts);
     }
 
-
-    saveContacts(contacts);
-
+    if(wasContactsChanged) {
+        saveContacts(contacts);
+    }
+    
     return 0;
 }
