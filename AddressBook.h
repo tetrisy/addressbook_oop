@@ -7,9 +7,13 @@
 
 class AddressBook {
     private:
-        std::vector<Contact> contacts;
+        std::vector<Contact> _contacts;
     public:
+        AddressBook(std::vector<Contact> contacts) {
+            _contacts = contacts;
+        }
         void displayMenu();
+        std::vector<Contact> loadContacts();
 };
 
 #endif

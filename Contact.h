@@ -6,13 +6,15 @@
 
 class Contact {
     private:
-        int id;
-        std::string firstName;
-        std::string lastName;
-        std::string phoneNumber;
-        std::string email;
-        std::string street;
-        std::string city;
+        int _id;
+        std::string _firstName;
+        std::string _lastName;
+        std::string _phoneNumber;
+        std::string _email;
+        std::string _street;
+        std::string _city;
+    public:
+        Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city);
 };
 
 #endif
