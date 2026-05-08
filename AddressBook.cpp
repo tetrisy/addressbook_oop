@@ -7,7 +7,7 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::ordered_json;
 
-void displayMenu() {
+void AddressBook::displayMenu() {
     std::cout << "===== ADDRESS BOOK =====" << std::endl;
     std::cout << "1. Add contact" << std::endl;
     std::cout << "2. Display all contacts" << std::endl;
@@ -17,7 +17,7 @@ void displayMenu() {
     std::cout << "0. Exit" << std::endl << std::endl;
 }
 
-std::vector<Contact> loadContacts() {
+std::vector<Contact> AddressBook::loadContacts() {
     std::vector<Contact> contacts;
     std::ifstream file ("contacts.json");
 
@@ -31,14 +31,6 @@ std::vector<Contact> loadContacts() {
 
     for (const auto& person : jsonContacts) {
         Contact contact(person["id"], person["firstName"], person["lastName"], person["phoneNumber"], person["email"], person["street"], person["city"]);
-        // contact.setID() = ;
-        // contact.firstName = person["firstName"];
-        // contact.lastName = person["lastName"];
-        // contact.phoneNumber = person["phoneNumber"];
-        // contact.email = person["email"];
-        // contact.street = person["street"];
-        // contact.city = person["city"];
-
         contacts.push_back(contact);
     }
 
