@@ -52,5 +52,14 @@
         "email": "laseksz@gmail.com",
         "street": "Akacjowa",
         "city": "Marzec"
+    },
+    {
+        "id": 7,
+        "firstName": "Marzena",
+        "lastName": "Polkowska",
+        "phoneNumber": "987654321",
+        "email": "marzenap@gmail.com",
+        "street": "Fiolkowa",
+        "city": "Poznan"
     }
 ]

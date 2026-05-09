@@ -19,5 +19,9 @@ int main() {
         isWorking = menu.executeMenuOption();
     }
 
+    if(addressBook.getWasContactChanged()) {
+        addressBook.saveContacts(addressBook.getContacts());
+    }
+
     return 0;
 }

@@ -21,7 +21,7 @@ bool Menu::executeMenuOption() {
     switch(Menu::getUserMenuChoice()) {
         case 1:
             contacts = addressbook.getContacts();
-            contacts.push_back(addressbook.addContact(contacts));
+            contacts.push_back(addressbook.createContact(contacts));
             addressbook.setContacts(contacts);
             break;
         case 2:

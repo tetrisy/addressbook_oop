@@ -15,6 +15,10 @@ void AddressBook::setContacts(std::vector<Contact> contacts) {
     _contacts = contacts;
 }
 
+bool AddressBook::getWasContactChanged() {
+    return wasContactsChanged;
+}
+
 std::vector<Contact> AddressBook::loadContacts() {
     std::vector<Contact> contacts;
     std::ifstream file ("contacts.json");
@@ -38,7 +42,28 @@ std::vector<Contact> AddressBook::loadContacts() {
     return contacts;
 }
 
-Contact AddressBook::addContact(std::vector<Contact> &contacts) {
+void AddressBook::saveContacts(const std::vector<Contact>& contacts) {
+    json jsonContacts = json::array();
+
+    for (const Contact& contact : contacts) {
+        json person;
+        person["id"] = contact.getID();
+        person["firstName"] = contact.getFirstName();
+        person["lastName"] = contact.getLastName();
+        person["phoneNumber"] = contact.getPhoneNumber();
+        person["email"] = contact.getEmail();
+        person["street"] = contact.getStreet();
+        person["city"] = contact.getCity();
+
+        jsonContacts.push_back(person);
+    }
+
+    std::ofstream file("contacts.json");
+    file << jsonContacts.dump(4);
+    file.close();
+}
+
+Contact AddressBook::createContact(std::vector<Contact> &contacts) {
     Contact contact;
     std::cout << "==== Adding contact menu ====" << std::endl; 
     contact.setID(contacts.size() + 1);
@@ -73,6 +98,8 @@ Contact AddressBook::addContact(std::vector<Contact> &contacts) {
     std::getline(std::cin, city);
     contact.setCity(city);
     std::cout << std::endl;
+
+    wasContactsChanged = true;
 
     return contact;
 }
