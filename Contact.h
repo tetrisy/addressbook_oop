@@ -15,7 +15,9 @@ class Contact {
         std::string _city;
     public:
         Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city);
-        int getFirstName();
+        int getID();
+        void setID();
+        std::string getFirstName();
         void setFirstName();
         std::string getLastName();
         void setLastName();
