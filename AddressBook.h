@@ -12,8 +12,10 @@ class AddressBook {
         AddressBook(std::vector<Contact> contacts) {
             _contacts = contacts;
         }
-        void displayMenu();
         std::vector<Contact> loadContacts();
+        void displayAllContacts(const std::vector<Contact>& contacts);
+        void displayContact(const Contact& contact);
+        std::vector<Contact> getContacts();
 };
 
 #endif
