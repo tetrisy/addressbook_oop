@@ -7,14 +7,8 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::ordered_json;
 
-void AddressBook::displayMenu() {
-    std::cout << "===== ADDRESS BOOK =====" << std::endl;
-    std::cout << "1. Add contact" << std::endl;
-    std::cout << "2. Display all contacts" << std::endl;
-    std::cout << "3. Edit contact" << std::endl;
-    std::cout << "4. Delete contact" << std::endl;
-    std::cout << "5. Search contact" << std::endl;
-    std::cout << "0. Exit" << std::endl << std::endl;
+std::vector<Contact> AddressBook::getContacts() {
+    return _contacts;
 }
 
 std::vector<Contact> AddressBook::loadContacts() {
@@ -38,4 +32,21 @@ std::vector<Contact> AddressBook::loadContacts() {
     file.close();
 
     return contacts;
+}
+
+void AddressBook::displayAllContacts(const std::vector<Contact>& contacts) {
+    for(const Contact& contact : contacts) {
+        AddressBook::displayContact(contact);
+    }
+}
+
+void AddressBook::displayContact(const Contact& contact) {
+    std::cout << "=== Contact information ===" << std::endl;
+    std::cout << "ID: " << contact.getID() << std::endl;
+    std::cout << "First Name: " << contact.getFirstName() << std::endl;
+    std::cout << "Last Name: " << contact.getLastName() << std::endl;
+    std::cout << "Phone Number: " << contact.getPhoneNumber() << std::endl;
+    std::cout << "Email: " << contact.getEmail() << std::endl;
+    std::cout << "Street: " << contact.getStreet() << std::endl;
+    std::cout << "City: " << contact.getCity() << std::endl << std::endl;
 }
