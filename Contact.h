@@ -15,19 +15,19 @@ class Contact {
         std::string _city;
     public:
         Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city);
-        int getID();
+        int getID() const;
         void setID(int newID);
-        std::string getFirstName();
+        std::string getFirstName() const;
         void setFirstName(std::string newFirstName);
-        std::string getLastName();
+        std::string getLastName() const;
         void setLastName(std::string newLastName);
-        std::string getPhoneNumber();
+        std::string getPhoneNumber() const;
         void setPhoneNumber(std::string newPhoneNumber);
-        std::string getEmail();
+        std::string getEmail() const;
         void setEmail(std::string newEmail);
-        std::string getStreet();
+        std::string getStreet() const;
         void setStreet(std::string newStreet);
-        std::string getCity();
+        std::string getCity() const;
         void setCity(std::string newCity);
 };
 
