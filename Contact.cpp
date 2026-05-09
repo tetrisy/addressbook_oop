@@ -1,4 +1,10 @@
 #include "Contact.h"
+#include <regex>
+#include <iostream>
+
+Contact::Contact() {
+
+}
 
 Contact::Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city) {
     _id = id;
@@ -9,6 +15,29 @@ Contact::Contact(int id, std::string firstName, std::string lastName, std::strin
     _street = street;
     _city = city;
 }
+
+bool Contact::phoneNumberValidation(std::string phoneNumber) {
+    const std::regex phoneReg("^\\d{9}$");
+    
+    if(std::regex_match(phoneNumber, phoneReg)) {
+        return true;
+    } else {
+        std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
+        return false;
+    }
+}
+
+bool Contact::emailValidation(std::string email) {
+    const std::regex emailReg(R"([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
+
+    if(std::regex_match(email, emailReg)) {
+        return true;
+    } else {
+        std::cout << "Invalid email! Enter a valid email address." << std::endl;
+        return false;
+    }
+}
+
 int Contact::getID() const {
     return _id;
 }

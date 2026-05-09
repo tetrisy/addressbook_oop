@@ -11,6 +11,10 @@ std::vector<Contact> AddressBook::getContacts() {
     return _contacts;
 }
 
+void AddressBook::setContacts(std::vector<Contact> contacts) {
+    _contacts = contacts;
+}
+
 std::vector<Contact> AddressBook::loadContacts() {
     std::vector<Contact> contacts;
     std::ifstream file ("contacts.json");
@@ -32,6 +36,45 @@ std::vector<Contact> AddressBook::loadContacts() {
     file.close();
 
     return contacts;
+}
+
+Contact AddressBook::addContact(std::vector<Contact> &contacts) {
+    Contact contact;
+    std::cout << "==== Adding contact menu ====" << std::endl; 
+    contact.setID(contacts.size() + 1);
+    std::cout << "Enter first name: ";
+    std::cin.ignore();
+    std::string firstName;
+    std::getline(std::cin, firstName);
+    contact.setFirstName(firstName);
+    std::cout << "Enter last name: ";
+    std::string lastName;
+    std::getline(std::cin, lastName);
+    contact.setLastName(lastName);
+    std::string phoneNumber;
+    do {
+        std::cout << "Enter phone number: ";
+        std::cin >> phoneNumber;
+        contact.setPhoneNumber(phoneNumber);
+    } while(!contact.Contact::phoneNumberValidation(phoneNumber));
+    std::string email;
+    do {
+        std::cout << "Enter email: ";
+        std::cin >> email;
+        contact.setEmail(email);
+    } while(!contact.Contact::emailValidation(email));
+    std::cout << "Enter street: ";
+    std::cin.ignore();
+    std::string street;
+    std::getline(std::cin, street);
+    contact.setStreet(street);
+    std::cout << "Enter city: ";
+    std::string city;
+    std::getline(std::cin, city);
+    contact.setCity(city);
+    std::cout << std::endl;
+
+    return contact;
 }
 
 void AddressBook::displayAllContacts(const std::vector<Contact>& contacts) {

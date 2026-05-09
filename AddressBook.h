@@ -13,9 +13,11 @@ class AddressBook {
             _contacts = contacts;
         }
         std::vector<Contact> loadContacts();
+        Contact addContact(std::vector<Contact> &contacts);
         void displayAllContacts(const std::vector<Contact>& contacts);
         void displayContact(const Contact& contact);
         std::vector<Contact> getContacts();
+        void setContacts(std::vector<Contact> contacts);
 };
 
 #endif

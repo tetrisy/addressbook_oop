@@ -17,9 +17,12 @@ void Menu::displayMenu() {
 }
 
 bool Menu::executeMenuOption() {
+    std::vector<Contact> contacts;
     switch(Menu::getUserMenuChoice()) {
         case 1:
-            //contacts.push_back(addContact(contacts));
+            contacts = addressbook.getContacts();
+            contacts.push_back(addressbook.addContact(contacts));
+            addressbook.setContacts(contacts);
             break;
         case 2:
             addressbook.displayAllContacts(addressbook.getContacts());

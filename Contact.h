@@ -14,7 +14,10 @@ class Contact {
         std::string _street;
         std::string _city;
     public:
+        Contact();
         Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city);
+        bool phoneNumberValidation(std::string phoneNumber);
+        bool emailValidation(std::string email);
         int getID() const;
         void setID(int newID);
         std::string getFirstName() const;
