@@ -22,7 +22,6 @@ bool Contact::phoneNumberValidation(std::string phoneNumber) {
     if(std::regex_match(phoneNumber, phoneReg)) {
         return true;
     } else {
-        std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
         return false;
     }
 }
@@ -33,7 +32,6 @@ bool Contact::emailValidation(std::string email) {
     if(std::regex_match(email, emailReg)) {
         return true;
     } else {
-        std::cout << "Invalid email! Enter a valid email address." << std::endl;
         return false;
     }
 }

@@ -15,7 +15,7 @@ class AddressBook {
         }
         std::vector<Contact> loadContacts();
         void saveContacts(const std::vector<Contact>& contacts);
-        Contact createContact(std::vector<Contact> &contacts);
+        Contact createContact(const std::vector<Contact>& contacts);
         void editContact(std::vector<Contact> &contacts);
         void displayAllContacts(const std::vector<Contact>& contacts);
         void displayContact(const Contact& contact);
