@@ -18,6 +18,7 @@ void Menu::displayMenu() {
 
 bool Menu::executeMenuOption() {
     std::vector<Contact> contacts;
+    contacts = addressbook.getContacts();
     switch(Menu::getUserMenuChoice()) {
         case 1:
             contacts = addressbook.getContacts();
@@ -27,16 +28,16 @@ bool Menu::executeMenuOption() {
         case 2:
             addressbook.displayAllContacts(addressbook.getContacts());
             break;
-        case 3:
-            contacts = addressbook.getContacts();
+        case 3:;
             addressbook.editContact(contacts);
             addressbook.setContacts(contacts);
             break;
         case 4:
-            //deleteContact(contacts);
+            addressbook.deleteContact(contacts);
+            addressbook.setContacts(contacts);
             break;
         case 5:
-            //searchContact(contacts);
+            addressbook.searchContact(contacts);
             break;
         case 0:
             return false;

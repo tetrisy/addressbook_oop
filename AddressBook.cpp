@@ -7,6 +7,14 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::ordered_json;
 
+std::string toLower(std::string phrase) {
+    for (char& c : phrase) {
+        c = tolower(c);
+    }
+
+    return phrase;
+}
+
 std::vector<Contact> AddressBook::getContacts() {
     return _contacts;
 }
@@ -45,8 +53,9 @@ std::vector<Contact> AddressBook::loadContacts() {
 void AddressBook::saveContacts(const std::vector<Contact>& contacts) {
     json jsonContacts = json::array();
 
+    json person;
+
     for (const Contact& contact : contacts) {
-        json person;
         person["id"] = contact.getID();
         person["firstName"] = contact.getFirstName();
         person["lastName"] = contact.getLastName();
@@ -178,6 +187,64 @@ void AddressBook::editContact(std::vector<Contact> &contacts) {
     contacts[editID - 1] = contact; 
 
     wasContactsChanged = true;
+}
+
+void AddressBook::deleteContact(std::vector<Contact> &contacts) {
+    int deleteID;
+    char YN;
+    do {
+        std::cout << "Enter ID of contact you want to delete: ";
+        std::cin >> deleteID;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number." << std::endl;
+            deleteID = -1;
+            continue;
+        }
+
+    } while (deleteID < 1 || deleteID > contacts.size());
+
+    do {
+        std::cout << "Are you sure you want to delete? (Y/N): ";
+        std::cin >> YN;
+    } while (YN != 'Y' && YN != 'N');
+
+    if (YN == 'Y') {
+        std::cout << "Contact deleted!" << std::endl;
+        contacts.erase(contacts.begin() + (deleteID - 1));
+    }
+
+    wasContactsChanged = true;
+}
+
+void AddressBook::searchContact(const std::vector<Contact>& contacts) {
+    std::string phrase;
+    std::cout << "Enter name or phone number to search: ";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    getline(std::cin, phrase);
+
+    std::vector<int> found;
+    std::string phraseToLower = toLower(phrase);
+
+    for (int i = 0; i < contacts.size(); i++) {
+        if (toLower(contacts[i].getFirstName()).find(phraseToLower) != std::string::npos ||
+            toLower(contacts[i].getLastName()).find(phraseToLower) != std::string::npos ||
+            contacts[i].getPhoneNumber().find(phrase) != std::string::npos) {
+                found.push_back(i);
+            } 
+    }
+
+    if (found.empty()) {
+        std::cout << "Nothing found." << std::endl;
+    }
+
+    std::cout << std::endl << "Found " << found.size() << " contacts." << std::endl << std::endl;
+    AddressBook addressBook(contacts);
+    for (int id : found) {
+        addressBook.displayContact(contacts[id]);
+    }
 }
 
 void AddressBook::displayAllContacts(const std::vector<Contact>& contacts) {
