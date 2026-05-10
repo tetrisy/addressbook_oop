@@ -150,12 +150,22 @@ void AddressBook::editContact(std::vector<Contact> &contacts) {
         std::cout << "Enter phone number: ";
         std::cin >> phoneNumber;
         contact.setPhoneNumber(phoneNumber);
-    } while(!contact.Contact::phoneNumberValidation(phoneNumber));
+        if(contact.Contact::phoneNumberValidation(phoneNumber)) {
+            break;
+        } else {
+            std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
+        }
+    } while(true);
     do {
         std::cout << "Enter email: ";
         std::cin >> email;
         contact.setEmail(email);
-    } while(!contact.Contact::emailValidation(email));
+        if(contact.Contact::emailValidation(email)) {
+            break;
+        } else {
+            std::cout << "Invalid email! Enter a valid email address." << std::endl;
+        }
+    } while(true);
     std::cout << "Enter street: ";
     std::cin.ignore();
     std::getline(std::cin, street);
