@@ -28,7 +28,9 @@ bool Menu::executeMenuOption() {
             addressbook.displayAllContacts(addressbook.getContacts());
             break;
         case 3:
-            //editContact(contacts);
+            contacts = addressbook.getContacts();
+            addressbook.editContact(contacts);
+            addressbook.setContacts(contacts);
             break;
         case 4:
             //deleteContact(contacts);

@@ -56,10 +56,10 @@
     {
         "id": 7,
         "firstName": "Marzena",
-        "lastName": "Polkowska",
-        "phoneNumber": "987654321",
-        "email": "marzenap@gmail.com",
-        "street": "Fiolkowa",
+        "lastName": "Moczkowska",
+        "phoneNumber": "999888777",
+        "email": "moczka@gmail.com",
+        "street": "Polna",
         "city": "Poznan"
     }
 ]

@@ -65,24 +65,27 @@ void AddressBook::saveContacts(const std::vector<Contact>& contacts) {
 
 Contact AddressBook::createContact(std::vector<Contact> &contacts) {
     Contact contact;
+    std::string firstName;
+    std::string lastName;
+    std::string phoneNumber;
+    std::string email;
+    std::string street;
+    std::string city;
+
     std::cout << "==== Adding contact menu ====" << std::endl; 
     contact.setID(contacts.size() + 1);
     std::cout << "Enter first name: ";
     std::cin.ignore();
-    std::string firstName;
     std::getline(std::cin, firstName);
     contact.setFirstName(firstName);
     std::cout << "Enter last name: ";
-    std::string lastName;
     std::getline(std::cin, lastName);
     contact.setLastName(lastName);
-    std::string phoneNumber;
     do {
         std::cout << "Enter phone number: ";
         std::cin >> phoneNumber;
         contact.setPhoneNumber(phoneNumber);
     } while(!contact.Contact::phoneNumberValidation(phoneNumber));
-    std::string email;
     do {
         std::cout << "Enter email: ";
         std::cin >> email;
@@ -90,11 +93,9 @@ Contact AddressBook::createContact(std::vector<Contact> &contacts) {
     } while(!contact.Contact::emailValidation(email));
     std::cout << "Enter street: ";
     std::cin.ignore();
-    std::string street;
     std::getline(std::cin, street);
     contact.setStreet(street);
     std::cout << "Enter city: ";
-    std::string city;
     std::getline(std::cin, city);
     contact.setCity(city);
     std::cout << std::endl;
@@ -102,6 +103,61 @@ Contact AddressBook::createContact(std::vector<Contact> &contacts) {
     wasContactsChanged = true;
 
     return contact;
+}
+
+void AddressBook::editContact(std::vector<Contact> &contacts) {
+    int editID;
+    std::string firstName;
+    std::string lastName;
+    std::string phoneNumber;
+    std::string email;
+    std::string street;
+    std::string city;
+    Contact contact;
+
+    do {
+        std::cout << "Enter ID of contact you want to edit: ";
+        std::cin >> editID;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number." << std::endl;
+            editID = -1;
+            continue;
+        }
+
+    } while (editID < 1 || editID > contacts.size());
+    contact.setID(contacts[editID - 1].getID());
+    std::cout << "Enter first name: ";
+    std::cin.ignore();
+    std::getline(std::cin, firstName);
+    contact.setFirstName(firstName);
+    std::cout << "Enter last name: ";
+    std::getline(std::cin, lastName);
+    contact.setLastName(lastName);
+    do {
+        std::cout << "Enter phone number: ";
+        std::cin >> phoneNumber;
+        contact.setPhoneNumber(phoneNumber);
+    } while(!contact.Contact::phoneNumberValidation(phoneNumber));
+    do {
+        std::cout << "Enter email: ";
+        std::cin >> email;
+        contact.setEmail(email);
+    } while(!contact.Contact::emailValidation(email));
+    std::cout << "Enter street: ";
+    std::cin.ignore();
+    std::getline(std::cin, street);
+    contact.setStreet(street);
+    std::cout << "Enter city: ";
+    std::getline(std::cin, city);
+    contact.setCity(city);
+    std::cout << std::endl;
+
+    contacts[editID - 1] = contact; 
+
+    wasContactsChanged = true;
 }
 
 void AddressBook::displayAllContacts(const std::vector<Contact>& contacts) {
