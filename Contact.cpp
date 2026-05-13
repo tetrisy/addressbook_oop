@@ -2,10 +2,6 @@
 #include <regex>
 #include <iostream>
 
-Contact::Contact() {
-
-}
-
 Contact::Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city) {
     _id = id;
     _firstName = firstName;
