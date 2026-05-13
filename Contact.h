@@ -19,7 +19,7 @@ class Contact {
         bool phoneNumberValidation(const std::string& phoneNumber);
         bool emailValidation(const std::string& email);
 
-        inline int getID() const {
+        const inline int& getID() const {
             return _id;
         }
 
@@ -27,7 +27,7 @@ class Contact {
             _id = newID;
         }
 
-        inline std::string getFirstName() const {
+        const inline std::string& getFirstName() const {
             return _firstName;
         }
 
@@ -35,7 +35,7 @@ class Contact {
             _firstName = newFirstName;
         }
 
-        inline std::string getLastName() const {
+        const inline std::string& getLastName() const {
             return _lastName;
         }
 
@@ -43,7 +43,7 @@ class Contact {
             _lastName = newLastName;
         }
 
-        inline std::string getPhoneNumber() const {
+        const inline std::string& getPhoneNumber() const {
             return _phoneNumber;
         }
 
@@ -51,7 +51,7 @@ class Contact {
             _phoneNumber = newPhoneNumber;
         }
 
-        inline std::string getEmail() const {
+        const inline std::string& getEmail() const {
             return _email;
         }
 
@@ -59,7 +59,7 @@ class Contact {
             _email = newEmail;
         }
 
-        inline std::string getStreet() const {
+        const inline std::string& getStreet() const {
             return _street;
         }
 
@@ -67,7 +67,7 @@ class Contact {
             _street = newStreet;
         }
 
-        inline std::string getCity() const {
+        const inline std::string& getCity() const {
             return _city;
         }
 

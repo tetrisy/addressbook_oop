@@ -23,7 +23,7 @@ class AddressBook {
         void displayAllContacts(const std::vector<Contact>& contacts);
         void displayContact(const Contact& contact);
 
-        inline std::vector<Contact> getContacts() {
+        const inline std::vector<Contact>& getContacts() {
             return _contacts;
         }
 
@@ -31,7 +31,7 @@ class AddressBook {
             _contacts = contacts;
         }       
 
-        inline bool getWasContactChanged() {
+        const inline bool& getWasContactChanged() {
             return wasContactsChanged;
         }
 };
