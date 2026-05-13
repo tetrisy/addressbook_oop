@@ -8,7 +8,7 @@
 
 class Menu {
     private:
-    AddressBook& addressbook;
+        AddressBook& addressbook;
     public:
         Menu(AddressBook& book);
         void displayMenu();
