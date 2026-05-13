@@ -18,20 +18,62 @@ class Contact {
         Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city);
         bool phoneNumberValidation(const std::string& phoneNumber);
         bool emailValidation(const std::string& email);
-        int getID() const;
-        void setID(int newID);
-        std::string getFirstName() const;
-        void setFirstName(std::string newFirstName);
-        std::string getLastName() const;
-        void setLastName(std::string newLastName);
-        std::string getPhoneNumber() const;
-        void setPhoneNumber(std::string newPhoneNumber);
-        std::string getEmail() const;
-        void setEmail(std::string newEmail);
-        std::string getStreet() const;
-        void setStreet(std::string newStreet);
-        std::string getCity() const;
-        void setCity(std::string newCity);
+
+        inline int getID() const {
+            return _id;
+        }
+
+        inline void setID(int newID) {
+            _id = newID;
+        }
+
+        inline std::string getFirstName() const {
+            return _firstName;
+        }
+
+        inline void setFirstName(std::string newFirstName) {
+            _firstName = newFirstName;
+        }
+
+        inline std::string getLastName() const {
+            return _lastName;
+        }
+
+        inline void setLastName(std::string newLastName) {
+            _lastName = newLastName;
+        }
+
+        inline std::string getPhoneNumber() const {
+            return _phoneNumber;
+        }
+
+        inline void setPhoneNumber(std::string newPhoneNumber) {
+            _phoneNumber = newPhoneNumber;
+        }
+
+        inline std::string getEmail() const {
+            return _email;
+        }
+
+        inline void setEmail(std::string newEmail) {
+            _email = newEmail;
+        }
+
+        inline std::string getStreet() const {
+            return _street;
+        }
+
+        inline void setStreet(std::string newStreet) {
+            _street = newStreet;
+        }
+
+        inline std::string getCity() const {
+            return _city;
+        }
+
+        inline void setCity(std::string newCity) {
+            _city = newCity;
+        }
 };
 
 #endif

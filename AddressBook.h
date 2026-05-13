@@ -23,15 +23,15 @@ class AddressBook {
         void displayAllContacts(const std::vector<Contact>& contacts);
         void displayContact(const Contact& contact);
 
-        inline std::vector<Contact> AddressBook::getContacts() {
+        inline std::vector<Contact> getContacts() {
             return _contacts;
         }
 
-        inline void AddressBook::setContacts(std::vector<Contact> contacts) {
+        inline void setContacts(std::vector<Contact> contacts) {
             _contacts = contacts;
         }       
 
-        inline bool AddressBook::getWasContactChanged() {
+        inline bool getWasContactChanged() {
             return wasContactsChanged;
         }
 };
