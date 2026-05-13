@@ -56,7 +56,6 @@ void AddressBook::saveContacts() {
 
     std::ofstream file("contacts.json");
     file << jsonContacts.dump(4);
-    file.close();
 }
 
 void AddressBook::createContact() {
