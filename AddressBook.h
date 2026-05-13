@@ -22,9 +22,18 @@ class AddressBook {
         void searchContact(const std::vector<Contact>& contacts);
         void displayAllContacts(const std::vector<Contact>& contacts);
         void displayContact(const Contact& contact);
-        std::vector<Contact> getContacts();
-        void setContacts(std::vector<Contact> contacts);
-        bool getWasContactChanged();
+
+        inline std::vector<Contact> AddressBook::getContacts() {
+            return _contacts;
+        }
+
+        inline void AddressBook::setContacts(std::vector<Contact> contacts) {
+            _contacts = contacts;
+        }       
+
+        inline bool AddressBook::getWasContactChanged() {
+            return wasContactsChanged;
+        }
 };
 
 #endif

@@ -15,18 +15,6 @@ std::string toLower(std::string phrase) {
     return phrase;
 }
 
-std::vector<Contact> AddressBook::getContacts() {
-    return _contacts;
-}
-
-void AddressBook::setContacts(std::vector<Contact> contacts) {
-    _contacts = contacts;
-}
-
-bool AddressBook::getWasContactChanged() {
-    return wasContactsChanged;
-}
-
 std::vector<Contact> AddressBook::loadContacts() {
     std::vector<Contact> contacts;
     std::ifstream file ("contacts.json");
