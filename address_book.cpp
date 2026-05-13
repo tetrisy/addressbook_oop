@@ -2,17 +2,11 @@
 #include "Menu.h"
 #include "Contact.h"
 #include <iostream>
-// #include <string>
-// #include <vector>
-// #include <regex>
-// #include <fstream>
-// #include <nlohmann/json.hpp>
-// using json = nlohmann::ordered_json;
-
 
 
 int main() {
-    AddressBook addressBook(addressBook.loadContacts());
+    AddressBook addressBook;
+    addressBook.loadContacts();
     Menu menu(addressBook);
     bool isWorking= true;
 
@@ -22,7 +16,7 @@ int main() {
     }
 
     if(addressBook.getWasContactChanged()) {
-        addressBook.saveContacts(addressBook.getContacts());
+        addressBook.saveContacts();
     }
 
     return 0;

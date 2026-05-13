@@ -15,13 +15,12 @@ std::string toLower(std::string phrase) {
     return phrase;
 }
 
-std::vector<Contact> AddressBook::loadContacts() {
-    std::vector<Contact> contacts;
+void AddressBook::loadContacts() {
     std::ifstream file ("contacts.json");
 
     if (!file.is_open()) {
         std::cout << "No contacts to load." << std::endl;
-        return contacts;
+        return;
     }
 
     json jsonContacts;
@@ -29,21 +28,20 @@ std::vector<Contact> AddressBook::loadContacts() {
 
     for (const auto& person : jsonContacts) {
         Contact contact(person["id"], person["firstName"], person["lastName"], person["phoneNumber"], person["email"], person["street"], person["city"]);
-        contacts.push_back(contact);
+        m_contacts.push_back(contact);
     }
 
-    std::cout << "Loaded " << contacts.size() << " contacts!" << std::endl << std::endl;
+    std::cout << "Loaded " << m_contacts.size() << " contacts!" << std::endl << std::endl;
     file.close();
 
-    return contacts;
 }
 
-void AddressBook::saveContacts(const std::vector<Contact>& contacts) {
+void AddressBook::saveContacts() {
     json jsonContacts = json::array();
 
     json person;
 
-    for (const Contact& contact : contacts) {
+    for (const Contact& contact : m_contacts) {
         person["id"] = contact.getID();
         person["firstName"] = contact.getFirstName();
         person["lastName"] = contact.getLastName();
@@ -60,7 +58,7 @@ void AddressBook::saveContacts(const std::vector<Contact>& contacts) {
     file.close();
 }
 
-Contact AddressBook::createContact(const std::vector<Contact>& contacts) {
+void AddressBook::createContact() {
     Contact contact;
     std::string firstName;
     std::string lastName;
@@ -70,7 +68,7 @@ Contact AddressBook::createContact(const std::vector<Contact>& contacts) {
     std::string city;
 
     std::cout << "==== Adding contact menu ====" << std::endl; 
-    contact.setID(contacts.size() + 1);
+    contact.setID(m_contacts.size() + 1);
     std::cout << "Enter first name: ";
     std::cin.ignore();
     std::getline(std::cin, firstName);
@@ -109,10 +107,10 @@ Contact AddressBook::createContact(const std::vector<Contact>& contacts) {
 
     wasContactsChanged = true;
 
-    return contact;
+    m_contacts.push_back(contact);
 }
 
-void AddressBook::editContact(std::vector<Contact> &contacts) {
+void AddressBook::editContact() {
     int editID;
     std::string firstName;
     std::string lastName;
@@ -134,8 +132,8 @@ void AddressBook::editContact(std::vector<Contact> &contacts) {
             continue;
         }
 
-    } while (editID < 1 || editID > contacts.size());
-    contact.setID(contacts[editID - 1].getID());
+    } while (editID < 1 || editID > m_contacts.size());
+    contact.setID(m_contacts[editID - 1].getID());
     std::cout << "Enter first name: ";
     std::cin.ignore();
     std::getline(std::cin, firstName);
@@ -172,12 +170,12 @@ void AddressBook::editContact(std::vector<Contact> &contacts) {
     contact.setCity(city);
     std::cout << std::endl;
 
-    contacts[editID - 1] = contact; 
+    m_contacts[editID - 1] = contact; 
 
     wasContactsChanged = true;
 }
 
-void AddressBook::deleteContact(std::vector<Contact> &contacts) {
+void AddressBook::deleteContact() {
     int deleteID;
     char YN;
     do {
@@ -192,7 +190,7 @@ void AddressBook::deleteContact(std::vector<Contact> &contacts) {
             continue;
         }
 
-    } while (deleteID < 1 || deleteID > contacts.size());
+    } while (deleteID < 1 || deleteID > m_contacts.size());
 
     do {
         std::cout << "Are you sure you want to delete? (Y/N): ";
@@ -201,13 +199,13 @@ void AddressBook::deleteContact(std::vector<Contact> &contacts) {
 
     if (YN == 'Y') {
         std::cout << "Contact deleted!" << std::endl;
-        contacts.erase(contacts.begin() + (deleteID - 1));
+        m_contacts.erase(m_contacts.begin() + (deleteID - 1));
     }
 
     wasContactsChanged = true;
 }
 
-void AddressBook::searchContact(const std::vector<Contact>& contacts) {
+void AddressBook::searchContact() {
     std::string phrase;
     std::cout << "Enter name or phone number to search: ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -216,10 +214,10 @@ void AddressBook::searchContact(const std::vector<Contact>& contacts) {
     std::vector<int> found;
     std::string phraseToLower = toLower(phrase);
 
-    for (int i = 0; i < contacts.size(); i++) {
-        if (toLower(contacts[i].getFirstName()).find(phraseToLower) != std::string::npos ||
-            toLower(contacts[i].getLastName()).find(phraseToLower) != std::string::npos ||
-            contacts[i].getPhoneNumber().find(phrase) != std::string::npos) {
+    for (int i = 0; i < m_contacts.size(); i++) {
+        if (toLower(m_contacts[i].getFirstName()).find(phraseToLower) != std::string::npos ||
+            toLower(m_contacts[i].getLastName()).find(phraseToLower) != std::string::npos ||
+            m_contacts[i].getPhoneNumber().find(phrase) != std::string::npos) {
                 found.push_back(i);
             } 
     }
@@ -229,14 +227,14 @@ void AddressBook::searchContact(const std::vector<Contact>& contacts) {
     }
 
     std::cout << std::endl << "Found " << found.size() << " contacts." << std::endl << std::endl;
-    AddressBook addressBook(contacts);
+
     for (int id : found) {
-        addressBook.displayContact(contacts[id]);
+        AddressBook::displayContact(m_contacts[id]);
     }
 }
 
-void AddressBook::displayAllContacts(const std::vector<Contact>& contacts) {
-    for(const Contact& contact : contacts) {
+void AddressBook::displayAllContacts() {
+    for(const Contact& contact : m_contacts) {
         AddressBook::displayContact(contact);
     }
 }

@@ -6,13 +6,13 @@
 
 class Contact {
     private:
-        int _id;
-        std::string _firstName;
-        std::string _lastName;
-        std::string _phoneNumber;
-        std::string _email;
-        std::string _street;
-        std::string _city;
+        int m_id;
+        std::string m_firstName;
+        std::string m_lastName;
+        std::string m_phoneNumber;
+        std::string m_email;
+        std::string m_street;
+        std::string m_city;
     public:
         Contact() = default;
         Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city);
@@ -20,59 +20,59 @@ class Contact {
         bool emailValidation(const std::string& email);
 
         const inline int& getID() const {
-            return _id;
+            return m_id;
         }
 
         inline void setID(int newID) {
-            _id = newID;
+            m_id = newID;
         }
 
         const inline std::string& getFirstName() const {
-            return _firstName;
+            return m_firstName;
         }
 
         inline void setFirstName(std::string newFirstName) {
-            _firstName = newFirstName;
+            m_firstName = newFirstName;
         }
 
         const inline std::string& getLastName() const {
-            return _lastName;
+            return m_lastName;
         }
 
         inline void setLastName(std::string newLastName) {
-            _lastName = newLastName;
+            m_lastName = newLastName;
         }
 
         const inline std::string& getPhoneNumber() const {
-            return _phoneNumber;
+            return m_phoneNumber;
         }
 
         inline void setPhoneNumber(std::string newPhoneNumber) {
-            _phoneNumber = newPhoneNumber;
+            m_phoneNumber = newPhoneNumber;
         }
 
         const inline std::string& getEmail() const {
-            return _email;
+            return m_email;
         }
 
         inline void setEmail(std::string newEmail) {
-            _email = newEmail;
+            m_email = newEmail;
         }
 
         const inline std::string& getStreet() const {
-            return _street;
+            return m_street;
         }
 
         inline void setStreet(std::string newStreet) {
-            _street = newStreet;
+            m_street = newStreet;
         }
 
         const inline std::string& getCity() const {
-            return _city;
+            return m_city;
         }
 
         inline void setCity(std::string newCity) {
-            _city = newCity;
+            m_city = newCity;
         }
 };
 

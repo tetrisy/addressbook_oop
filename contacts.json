@@ -61,5 +61,14 @@
         "email": "moczka@gmail.com",
         "street": "Polna",
         "city": "Poznan"
+    },
+    {
+        "id": 8,
+        "firstName": "Agata",
+        "lastName": "Morawiec",
+        "phoneNumber": "112332442",
+        "email": "moraa@gmail.com",
+        "street": "Ciemna",
+        "city": "Podgorze"
     }
 ]

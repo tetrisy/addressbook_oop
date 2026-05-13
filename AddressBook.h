@@ -7,28 +7,25 @@
 
 class AddressBook {
     private:
-        std::vector<Contact> _contacts;
+        std::vector<Contact> m_contacts;
         bool wasContactsChanged = false;
         
     public:
-        AddressBook(std::vector<Contact> contacts) {
-            _contacts = contacts;
-        }
-        std::vector<Contact> loadContacts();
-        void saveContacts(const std::vector<Contact>& contacts);
-        Contact createContact(const std::vector<Contact>& contacts);
-        void editContact(std::vector<Contact> &contacts);
-        void deleteContact(std::vector<Contact> &contacts);
-        void searchContact(const std::vector<Contact>& contacts);
-        void displayAllContacts(const std::vector<Contact>& contacts);
+        void loadContacts();
+        void saveContacts();
+        void createContact();
+        void editContact();
+        void deleteContact();
+        void searchContact();
+        void displayAllContacts();
         void displayContact(const Contact& contact);
 
         const inline std::vector<Contact>& getContacts() {
-            return _contacts;
+            return m_contacts;
         }
 
         inline void setContacts(std::vector<Contact> contacts) {
-            _contacts = contacts;
+            m_contacts = contacts;
         }       
 
         const inline bool& getWasContactChanged() {

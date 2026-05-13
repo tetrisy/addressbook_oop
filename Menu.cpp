@@ -17,27 +17,21 @@ void Menu::displayMenu() {
 }
 
 bool Menu::executeMenuOption() {
-    std::vector<Contact> contacts;
-    contacts = addressbook.getContacts();
     switch(Menu::getUserMenuChoice()) {
-        case 1:
-            contacts = addressbook.getContacts();
-            contacts.push_back(addressbook.createContact(contacts));
-            addressbook.setContacts(contacts);
+        case 1:;
+            addressbook.createContact();;
             break;
         case 2:
-            addressbook.displayAllContacts(addressbook.getContacts());
+            addressbook.displayAllContacts();
             break;
         case 3:;
-            addressbook.editContact(contacts);
-            addressbook.setContacts(contacts);
+            addressbook.editContact();
             break;
         case 4:
-            addressbook.deleteContact(contacts);
-            addressbook.setContacts(contacts);
+            addressbook.deleteContact();
             break;
         case 5:
-            addressbook.searchContact(contacts);
+            addressbook.searchContact();
             break;
         case 0:
             return false;
