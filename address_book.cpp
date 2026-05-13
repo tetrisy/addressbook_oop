@@ -3,7 +3,6 @@
 #include "Contact.h"
 #include <iostream>
 
-
 int main() {
     AddressBook addressBook;
     addressBook.loadContacts();

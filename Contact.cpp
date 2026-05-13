@@ -15,7 +15,7 @@ Contact::Contact(int id, std::string firstName, std::string lastName, std::strin
 bool Contact::phoneNumberValidation(const std::string& phoneNumber) {
     const std::regex phoneReg("^\\d{9}$");
     
-    if(std::regex_match(m_phoneNumber, phoneReg)) {
+    if(std::regex_match(phoneNumber, phoneReg)) {
         return true;
     } else {
         return false;
@@ -25,7 +25,7 @@ bool Contact::phoneNumberValidation(const std::string& phoneNumber) {
 bool Contact::emailValidation(const std::string& email) {
     const std::regex emailReg(R"([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
 
-    if(std::regex_match(m_email, emailReg)) {
+    if(std::regex_match(email, emailReg)) {
         return true;
     } else {
         return false;

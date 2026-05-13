@@ -1,5 +1,4 @@
-#ifndef ADDRESSBOOK_H
-#define ADDRESSBOOK_H
+#pragma once
 
 #include "Contact.h"
 #include <vector>
@@ -32,5 +31,3 @@ class AddressBook {
             return wasContactsChanged;
         }
 };
-
-#endif

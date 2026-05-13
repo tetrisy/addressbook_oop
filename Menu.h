@@ -1,5 +1,4 @@
-#ifndef MENU_H
-#define MENU_H
+#pragma once
 
 #include "Contact.h"
 #include "AddressBook.h"
@@ -15,5 +14,3 @@ class Menu {
         bool executeMenuOption();
         int getUserMenuChoice();
 };
-
-#endif

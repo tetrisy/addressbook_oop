@@ -1,5 +1,6 @@
-#include "Contact.h"
 #include "AddressBook.h"
+#include "Contact.h"
+#include "Utils.h"
 #include <fstream>
 #include <string>
 #include <vector>
@@ -60,27 +61,20 @@ void AddressBook::saveContacts() {
 
 void AddressBook::createContact() {
     Contact contact;
-    std::string firstName;
-    std::string lastName;
     std::string phoneNumber;
     std::string email;
-    std::string street;
-    std::string city;
 
     std::cout << "==== Adding contact menu ====" << std::endl; 
     contact.setID(m_contacts.size() + 1);
     std::cout << "Enter first name: ";
-    std::cin.ignore();
-    std::getline(std::cin, firstName);
-    contact.setFirstName(firstName);
+    contact.setFirstName(Utils::getUserInput());
     std::cout << "Enter last name: ";
-    std::getline(std::cin, lastName);
-    contact.setLastName(lastName);
-    do {
+    contact.setLastName(Utils::getUserInput());
+    do { 
         std::cout << "Enter phone number: ";
-        std::cin >> phoneNumber;
-        contact.setPhoneNumber(phoneNumber);
+        phoneNumber = Utils::getUserInput();
         if(contact.Contact::phoneNumberValidation(phoneNumber)) {
+            contact.setPhoneNumber(phoneNumber);
             break;
         } else {
             std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
@@ -88,21 +82,18 @@ void AddressBook::createContact() {
     } while(true);
     do {
         std::cout << "Enter email: ";
-        std::cin >> email;
-        contact.setEmail(email);
+        email = Utils::getUserInput();
         if(contact.Contact::emailValidation(email)) {
+            contact.setEmail(email);
             break;
         } else {
             std::cout << "Invalid email! Enter a valid email address." << std::endl;
         }
     } while(true);
     std::cout << "Enter street: ";
-    std::cin.ignore();
-    std::getline(std::cin, street);
-    contact.setStreet(street);
+    contact.setStreet(Utils::getUserInput());
     std::cout << "Enter city: ";
-    std::getline(std::cin, city);
-    contact.setCity(city);
+    contact.setCity(Utils::getUserInput());
     std::cout << std::endl;
 
     wasContactsChanged = true;
@@ -112,12 +103,8 @@ void AddressBook::createContact() {
 
 void AddressBook::editContact() {
     int editID;
-    std::string firstName;
-    std::string lastName;
     std::string phoneNumber;
     std::string email;
-    std::string street;
-    std::string city;
     Contact contact;
 
     do {
@@ -135,17 +122,14 @@ void AddressBook::editContact() {
     } while (editID < 1 || editID > m_contacts.size());
     contact.setID(m_contacts[editID - 1].getID());
     std::cout << "Enter first name: ";
-    std::cin.ignore();
-    std::getline(std::cin, firstName);
-    contact.setFirstName(firstName);
+    contact.setFirstName(Utils::getUserInput());
     std::cout << "Enter last name: ";
-    std::getline(std::cin, lastName);
-    contact.setLastName(lastName);
+    contact.setLastName(Utils::getUserInput());
     do {
         std::cout << "Enter phone number: ";
-        std::cin >> phoneNumber;
-        contact.setPhoneNumber(phoneNumber);
+        phoneNumber = Utils::getUserInput();
         if(contact.Contact::phoneNumberValidation(phoneNumber)) {
+            contact.setPhoneNumber(phoneNumber);
             break;
         } else {
             std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
@@ -153,21 +137,18 @@ void AddressBook::editContact() {
     } while(true);
     do {
         std::cout << "Enter email: ";
-        std::cin >> email;
-        contact.setEmail(email);
+        email = Utils::getUserInput();
         if(contact.Contact::emailValidation(email)) {
+            contact.setEmail(email);
             break;
         } else {
             std::cout << "Invalid email! Enter a valid email address." << std::endl;
         }
     } while(true);
     std::cout << "Enter street: ";
-    std::cin.ignore();
-    std::getline(std::cin, street);
-    contact.setStreet(street);
+    contact.setStreet(Utils::getUserInput());
     std::cout << "Enter city: ";
-    std::getline(std::cin, city);
-    contact.setCity(city);
+    contact.setCity(Utils::getUserInput());
     std::cout << std::endl;
 
     m_contacts[editID - 1] = contact; 

@@ -1,5 +1,4 @@
-#ifndef CONTACT_H
-#define CONTACT_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -75,5 +74,3 @@ class Contact {
             m_city = newCity;
         }
 };
-
-#endif
