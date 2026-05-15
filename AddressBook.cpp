@@ -12,6 +12,11 @@ using json = nlohmann::ordered_json;
 void AddressBook::loadContacts() {
     std::ifstream file ("contacts.json");
 
+    if(file.fail()) {
+        std::cout << "Error! File couldn't be opened." << std::endl;
+        return;
+    }
+
     if (!file.is_open()) {
         std::cout << "No contacts to load." << std::endl;
         return;
@@ -46,6 +51,12 @@ void AddressBook::saveContacts() {
     }
 
     std::ofstream file("contacts.json");
+
+    if(file.fail()) {
+        std::cout << "Error! File couldn't be opened." << std::endl;
+        return;
+    }
+    
     file << jsonContacts.dump(4);
 }
 
