@@ -3,18 +3,24 @@
 #include <string>
 #include <iostream>
 
+namespace NSContact {
+    struct ContactDetails {
+        std::string phoneNumber;
+        std::string email;
+        std::string street;
+        std::string city;
+    };
+}
+
 class Contact {
     private:
         int m_id;
         std::string m_firstName;
         std::string m_lastName;
-        std::string m_phoneNumber;
-        std::string m_email;
-        std::string m_street;
-        std::string m_city;
+        NSContact::ContactDetails details;
     public:
         Contact() = default;
-        Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city);
+        Contact(int id, std::string firstName, std::string lastName, NSContact::ContactDetails contactDetails = {});
         static bool phoneNumberValidation(const std::string& phoneNumber);
         static bool emailValidation(const std::string& email);
 
@@ -43,34 +49,34 @@ class Contact {
         }
 
         inline const std::string& getPhoneNumber() const {
-            return m_phoneNumber;
+            return details.phoneNumber;
         }
 
         inline void setPhoneNumber(std::string newPhoneNumber) {
-            m_phoneNumber = newPhoneNumber;
+            details.phoneNumber = newPhoneNumber;
         }
 
         inline const std::string& getEmail() const {
-            return m_email;
+            return details.email;
         }
 
         inline void setEmail(std::string newEmail) {
-            m_email = newEmail;
+            details.email = newEmail;
         }
 
         inline const std::string& getStreet() const {
-            return m_street;
+            return details.street;
         }
 
         inline void setStreet(std::string newStreet) {
-            m_street = newStreet;
+            details.street = newStreet;
         }
 
         inline const std::string& getCity() const {
-            return m_city;
+            return details.city;
         }
 
         inline void setCity(std::string newCity) {
-            m_city = newCity;
+            details.city = newCity;
         }
 };

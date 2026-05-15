@@ -2,14 +2,9 @@
 #include <regex>
 #include <iostream>
 
-Contact::Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city) {
-    m_id = id;
-    m_firstName = firstName;
-    m_lastName = lastName;
-    m_phoneNumber = phoneNumber;
-    m_email = email;
-    m_street = street;
-    m_city = city;
+Contact::Contact(int id, std::string firstName, std::string lastName, NSContact::ContactDetails contactDetails)
+    : m_id(id), m_firstName(firstName), m_lastName(lastName), details(contactDetails)
+{
 }
 
 bool Contact::phoneNumberValidation(const std::string& phoneNumber) {

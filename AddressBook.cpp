@@ -26,7 +26,7 @@ void AddressBook::loadContacts() {
     file >> jsonContacts;
 
     for (const auto& person : jsonContacts) {
-        Contact contact(person["id"], person["firstName"], person["lastName"], person["phoneNumber"], person["email"], person["street"], person["city"]);
+        Contact contact(person["id"], person["firstName"], person["lastName"], {person["phoneNumber"], person["email"], person["street"], person["city"]});
         m_contacts.push_back(contact);
     }
 
