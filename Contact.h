@@ -15,8 +15,8 @@ class Contact {
     public:
         Contact() = default;
         Contact(int id, std::string firstName, std::string lastName, std::string phoneNumber, std::string email, std::string street, std::string city);
-        bool phoneNumberValidation(const std::string& phoneNumber);
-        bool emailValidation(const std::string& email);
+        static bool phoneNumberValidation(const std::string& phoneNumber);
+        static bool emailValidation(const std::string& email);
 
         const inline int& getID() const {
             return m_id;
