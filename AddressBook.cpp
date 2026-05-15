@@ -9,14 +9,6 @@
 
 using json = nlohmann::ordered_json;
 
-std::string toLower(std::string phrase) {
-    for (char& c : phrase) {
-        c = tolower(c);
-    }
-
-    return phrase;
-}
-
 void AddressBook::loadContacts() {
     std::ifstream file ("contacts.json");
 
@@ -191,11 +183,11 @@ void AddressBook::searchContact() {
     getline(std::cin, phrase);
 
     std::vector<int> found;
-    std::string phraseToLower = toLower(phrase);
+    std::string phraseToLower = NSString::toLower(phrase);
 
     for (int i = 0; i < m_contacts.size(); i++) {
-        if (toLower(m_contacts[i].getFirstName()).find(phraseToLower) != std::string::npos ||
-            toLower(m_contacts[i].getLastName()).find(phraseToLower) != std::string::npos ||
+        if (NSString::toLower(m_contacts[i].getFirstName()).find(phraseToLower) != std::string::npos ||
+            NSString::toLower(m_contacts[i].getLastName()).find(phraseToLower) != std::string::npos ||
             m_contacts[i].getPhoneNumber().find(phrase) != std::string::npos) {
                 found.push_back(i);
             } 

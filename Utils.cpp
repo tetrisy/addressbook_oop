@@ -6,3 +6,11 @@ std::string Utils::getUserInput() {
 
     return temp;
 }
+
+std::string NSString::toLower(std::string phrase) {
+    for (char& c : phrase) {
+        c = tolower(c);
+    }
+
+    return phrase;
+}
