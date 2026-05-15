@@ -33,8 +33,6 @@ void AddressBook::loadContacts() {
     }
 
     std::cout << "Loaded " << m_contacts.size() << " contacts!" << std::endl << std::endl;
-    file.close();
-
 }
 
 void AddressBook::saveContacts() {
