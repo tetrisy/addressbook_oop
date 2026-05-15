@@ -56,7 +56,7 @@ void AddressBook::saveContacts() {
         std::cout << "Error! File couldn't be opened." << std::endl;
         return;
     }
-    
+
     file << jsonContacts.dump(4);
 }
 
@@ -169,7 +169,6 @@ void AddressBook::deleteContact() {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Invalid input! Please enter a number." << std::endl;
             deleteID = -1;
-            continue;
         }
 
     } while (deleteID < 1 || deleteID > m_contacts.size());
@@ -177,7 +176,7 @@ void AddressBook::deleteContact() {
     do {
         std::cout << "Are you sure you want to delete? (Y/N): ";
         std::cin >> YN;
-    } while (YN != 'Y' && YN != 'N');
+    } while (!(YN == 'Y' || YN == 'N'));
 
     if (YN == 'Y') {
         std::cout << "Contact deleted!" << std::endl;
