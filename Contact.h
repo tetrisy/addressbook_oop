@@ -18,7 +18,7 @@ class Contact {
         static bool phoneNumberValidation(const std::string& phoneNumber);
         static bool emailValidation(const std::string& email);
 
-        const inline int& getID() const {
+        inline const int& getID() const {
             return m_id;
         }
 
@@ -26,7 +26,7 @@ class Contact {
             m_id = newID;
         }
 
-        const inline std::string& getFirstName() const {
+        inline const std::string& getFirstName() const {
             return m_firstName;
         }
 
@@ -34,7 +34,7 @@ class Contact {
             m_firstName = newFirstName;
         }
 
-        const inline std::string& getLastName() const {
+        inline const std::string& getLastName() const {
             return m_lastName;
         }
 
@@ -42,7 +42,7 @@ class Contact {
             m_lastName = newLastName;
         }
 
-        const inline std::string& getPhoneNumber() const {
+        inline const std::string& getPhoneNumber() const {
             return m_phoneNumber;
         }
 
@@ -50,7 +50,7 @@ class Contact {
             m_phoneNumber = newPhoneNumber;
         }
 
-        const inline std::string& getEmail() const {
+        inline const std::string& getEmail() const {
             return m_email;
         }
 
@@ -58,7 +58,7 @@ class Contact {
             m_email = newEmail;
         }
 
-        const inline std::string& getStreet() const {
+        inline const std::string& getStreet() const {
             return m_street;
         }
 
@@ -66,7 +66,7 @@ class Contact {
             m_street = newStreet;
         }
 
-        const inline std::string& getCity() const {
+        inline const std::string& getCity() const {
             return m_city;
         }
 
