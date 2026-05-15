@@ -1,6 +1,6 @@
 #include "AddressBook.h"
-#include "Menu.h"
 #include "Contact.h"
+#include "Menu.h"
 #include <iostream>
 
 int main() {

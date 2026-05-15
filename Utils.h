@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include <limits>
+#include <iostream>
 
 namespace Utils {
         std::string getUserInput();

@@ -1,11 +1,12 @@
 #include "AddressBook.h"
 #include "Contact.h"
 #include "Utils.h"
+#include <nlohmann/json.hpp>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <iostream>
-#include <nlohmann/json.hpp>
+
 using json = nlohmann::ordered_json;
 
 std::string toLower(std::string phrase) {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Contact.h"
 #include "AddressBook.h"
+#include "Contact.h"
 #include <vector>
 #include <iostream>
 
