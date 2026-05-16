@@ -162,12 +162,12 @@ void AddressBook::deleteContact() {
 
     } while (deleteID < 1 || deleteID > m_contacts.size());
 
-    do {
-        std::cout << "Are you sure you want to delete? (Y/N): ";
-        std::cin >> YN;
-    } while (!(YN == 'Y' || YN == 'N'));
+    bool deleteConfirmed = false;
 
-    if (YN == 'Y') {
+    std::cout << "Are you sure you want to delete? (Y/N): ";
+    deleteConfirmed = Utils::confirmYesNo();
+
+    if (deleteConfirmed) {
         std::cout << "Contact deleted!" << std::endl;
         m_contacts.erase(m_contacts.begin() + (deleteID - 1));
     }

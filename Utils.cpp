@@ -24,6 +24,15 @@ int Utils::getUserID(int contactSize) {
     return temp;
 }
 
+bool Utils::confirmYesNo() {
+    char input;
+    do {
+        std::cin >> input;
+    } while (!(input == 'Y' || input == 'N'));
+
+    return input == 'Y';
+}
+
 std::string NSString::toLower(std::string phrase) {
     for (char& c : phrase) {
         c = tolower(c);
