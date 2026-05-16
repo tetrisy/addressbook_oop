@@ -104,23 +104,12 @@ void AddressBook::createContact() {
 
 void AddressBook::editContact() {
     int editID;
+    int contactSize = m_contacts.size();
     std::string phoneNumber;
     std::string email;
     Contact contact;
-
-    do {
-        std::cout << "Enter ID of contact you want to edit: ";
-        std::cin >> editID;
-
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input! Please enter a number." << std::endl;
-            editID = -1;
-            continue;
-        }
-
-    } while (editID < 1 || editID > m_contacts.size());
+    editID = Utils::getUserID(contactSize);
+    
     contact.setID(m_contacts[editID - 1].getID());
     std::cout << "Enter first name: ";
     contact.setFirstName(Utils::getUserInput());

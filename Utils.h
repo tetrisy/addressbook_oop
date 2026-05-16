@@ -5,6 +5,7 @@
 
 namespace Utils {
         std::string getUserInput();
+        int getUserID(int contactSize);
 };
 
 namespace NSString {
