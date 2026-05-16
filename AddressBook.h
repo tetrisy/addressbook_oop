@@ -15,7 +15,7 @@ class AddressBook {
         void createContact();
         void editContact();
         void deleteContact();
-        void searchContact();
+        std::vector<int> searchContact();
         void displayAllContacts();
         void displayContact(const Contact& contact);
 

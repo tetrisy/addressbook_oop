@@ -175,7 +175,7 @@ void AddressBook::deleteContact() {
     wasContactsChanged = true;
 }
 
-void AddressBook::searchContact() {
+std::vector<int> AddressBook::searchContact() {
     std::string phrase;
     std::cout << "Enter name or phone number to search: ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -198,9 +198,7 @@ void AddressBook::searchContact() {
 
     std::cout << std::endl << "Found " << found.size() << " contacts." << std::endl << std::endl;
 
-    for (int id : found) {
-        AddressBook::displayContact(m_contacts[id]);
-    }
+    return found;
 }
 
 void AddressBook::displayAllContacts() {
