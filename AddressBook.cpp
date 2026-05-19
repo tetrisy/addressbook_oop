@@ -108,7 +108,7 @@ void AddressBook::editContact() {
     std::string phoneNumber;
     std::string email;
     Contact contact;
-    editID = Utils::getUserID(contactSize);
+    editID = AddressBook::getUserID(contactSize);
     
     contact.setID(m_contacts[editID - 1].getID());
     std::cout << "Enter first name: ";
@@ -216,4 +216,21 @@ void AddressBook::displayContact(const Contact& contact) {
     std::cout << "Email: " << contact.getEmail() << std::endl;
     std::cout << "Street: " << contact.getStreet() << std::endl;
     std::cout << "City: " << contact.getCity() << std::endl << std::endl;
+}
+
+int AddressBook::getUserID(int contactSize) {
+    int temp;
+
+    do {
+        std::cout << "Enter ID of contact: ";
+        std::cin >> temp;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number." << std::endl;
+        }
+    } while (contactSize < 1 || temp > contactSize);
+
+    return temp;
 }

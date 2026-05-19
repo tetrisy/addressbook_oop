@@ -18,6 +18,7 @@ class AddressBook {
         std::vector<int> searchContact();
         void displayAllContacts();
         void displayContact(const Contact& contact);
+        int getUserID(int contactSize);
 
         inline const std::vector<Contact>& getContacts() {
             return m_contacts;
