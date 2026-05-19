@@ -1,28 +1,32 @@
 #include "Utils.h"
 
-using namespace Utils;
-using namespace NSString;
+namespace Utils {
+    std::string getUserInputLine() {
+        std::string temp;
+        std::getline(std::cin >> std::ws, temp);
 
-std::string Utils::getUserInputLine() {
-    std::string temp;
-    std::getline(std::cin >> std::ws, temp);
-
-    return temp;
-}
-
-bool Utils::confirmYesNo() {
-    char input;
-    do {
-        std::cin >> input;
-    } while (!(input == 'Y' || input == 'N'));
-
-    return input == 'Y';
-}
-
-std::string NSString::toLower(std::string phrase) {
-    for (char& c : phrase) {
-        c = tolower(c);
+        return temp;
     }
 
-    return phrase;
+    bool confirmYesNo() {
+        char input;
+        do {
+            std::cin >> input;
+        } while (!(input == 'Y' || input == 'N'));  
+
+        return input == 'Y';
+    }
 }
+
+namespace NSString {
+    std::string NSString::toLower(std::string phrase) {
+        for (char& c : phrase) {
+            c = tolower(c);
+        }
+
+        return phrase;
+    }
+}
+
+
+
