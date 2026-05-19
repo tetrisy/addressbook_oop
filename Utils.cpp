@@ -3,14 +3,14 @@
 using namespace Utils;
 using namespace NSString;
 
-std::string getUserInputLine() {
+std::string Utils::getUserInputLine() {
     std::string temp;
     std::getline(std::cin >> std::ws, temp);
 
     return temp;
 }
 
-bool confirmYesNo() {
+bool Utils::confirmYesNo() {
     char input;
     do {
         std::cin >> input;
@@ -19,7 +19,7 @@ bool confirmYesNo() {
     return input == 'Y';
 }
 
-std::string toLower(std::string phrase) {
+std::string NSString::toLower(std::string phrase) {
     for (char& c : phrase) {
         c = tolower(c);
     }

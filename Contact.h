@@ -23,6 +23,7 @@ class Contact {
         Contact(int id, std::string firstName, std::string lastName, NSContact::ContactDetails contactDetails = {});
         static bool phoneNumberValidation(const std::string& phoneNumber);
         static bool emailValidation(const std::string& email);
+        static Contact getContactDetailsFromUser();
 
         inline const int& getID() const {
             return m_id;

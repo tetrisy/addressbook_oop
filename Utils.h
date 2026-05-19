@@ -5,7 +5,6 @@
 
 namespace Utils {
         std::string getUserInputLine();
-        
         bool confirmYesNo();
 };
 
