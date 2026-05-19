@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace Utils {
-        std::string getUserInput();
+        std::string getUserInputLine();
         int getUserID(int contactSize);
         bool confirmYesNo();
 };

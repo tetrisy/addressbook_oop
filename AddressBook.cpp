@@ -68,12 +68,12 @@ void AddressBook::createContact() {
     std::cout << "==== Adding contact menu ====" << std::endl; 
     contact.setID(m_contacts.size() + 1);
     std::cout << "Enter first name: ";
-    contact.setFirstName(Utils::getUserInput());
+    contact.setFirstName(Utils::getUserInputLine());
     std::cout << "Enter last name: ";
-    contact.setLastName(Utils::getUserInput());
+    contact.setLastName(Utils::getUserInputLine());
     do { 
         std::cout << "Enter phone number: ";
-        phoneNumber = Utils::getUserInput();
+        phoneNumber = Utils::getUserInputLine();
         if(contact.Contact::phoneNumberValidation(phoneNumber)) {
             contact.setPhoneNumber(phoneNumber);
             break;
@@ -83,7 +83,7 @@ void AddressBook::createContact() {
     } while(true);
     do {
         std::cout << "Enter email: ";
-        email = Utils::getUserInput();
+        email = Utils::getUserInputLine();
         if(contact.Contact::emailValidation(email)) {
             contact.setEmail(email);
             break;
@@ -92,9 +92,9 @@ void AddressBook::createContact() {
         }
     } while(true);
     std::cout << "Enter street: ";
-    contact.setStreet(Utils::getUserInput());
+    contact.setStreet(Utils::getUserInputLine());
     std::cout << "Enter city: ";
-    contact.setCity(Utils::getUserInput());
+    contact.setCity(Utils::getUserInputLine());
     std::cout << std::endl;
 
     wasContactsChanged = true;
@@ -112,12 +112,12 @@ void AddressBook::editContact() {
     
     contact.setID(m_contacts[editID - 1].getID());
     std::cout << "Enter first name: ";
-    contact.setFirstName(Utils::getUserInput());
+    contact.setFirstName(Utils::getUserInputLine());
     std::cout << "Enter last name: ";
-    contact.setLastName(Utils::getUserInput());
+    contact.setLastName(Utils::getUserInputLine());
     do {
         std::cout << "Enter phone number: ";
-        phoneNumber = Utils::getUserInput();
+        phoneNumber = Utils::getUserInputLine();
         if(contact.Contact::phoneNumberValidation(phoneNumber)) {
             contact.setPhoneNumber(phoneNumber);
             break;
@@ -127,7 +127,7 @@ void AddressBook::editContact() {
     } while(true);
     do {
         std::cout << "Enter email: ";
-        email = Utils::getUserInput();
+        email = Utils::getUserInputLine();
         if(contact.Contact::emailValidation(email)) {
             contact.setEmail(email);
             break;
@@ -136,9 +136,9 @@ void AddressBook::editContact() {
         }
     } while(true);
     std::cout << "Enter street: ";
-    contact.setStreet(Utils::getUserInput());
+    contact.setStreet(Utils::getUserInputLine());
     std::cout << "Enter city: ";
-    contact.setCity(Utils::getUserInput());
+    contact.setCity(Utils::getUserInputLine());
     std::cout << std::endl;
 
     m_contacts[editID - 1] = contact; 
