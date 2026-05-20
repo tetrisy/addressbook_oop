@@ -19,7 +19,7 @@ namespace Utils {
 }
 
 namespace NSString {
-    std::string NSString::toLower(std::string phrase) {
+    std::string toLower(std::string phrase) {
         for (char& c : phrase) {
             c = tolower(c);
         }

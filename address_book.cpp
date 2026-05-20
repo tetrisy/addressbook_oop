@@ -14,9 +14,11 @@ int main() {
         isWorking = menu.executeMenuOption();
     }
 
-    if(addressBook.getWasContactChanged()) {
-        addressBook.saveContacts();
-    }
+    // if(addressBook.getWasContactChanged()) {
+    //     addressBook.saveContacts();
+    // }
+
+    addressBook.saveContacts();
 
     return 0;
 }

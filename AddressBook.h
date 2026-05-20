@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Contact.h"
+#include <nlohmann/json.hpp>
 #include <vector>
 #include <iostream>
+
+using json = nlohmann::ordered_json;
 
 class AddressBook {
     private:
@@ -19,6 +22,7 @@ class AddressBook {
         void displayAllContacts();
         void displayContact(const Contact& contact);
         int getUserID(int contactSize);
+        void to_json(nlohmann::ordered_json& j, const Contact& contact);
 
         inline const std::vector<Contact>& getContacts() {
             return m_contacts;

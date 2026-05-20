@@ -34,27 +34,18 @@ void AddressBook::loadContacts() {
 }
 
 void AddressBook::saveContacts() {
-    json jsonContacts = json::array();
-
-    json person;
-
-    for (const Contact& contact : m_contacts) {
-        person["id"] = contact.getID();
-        person["firstName"] = contact.getFirstName();
-        person["lastName"] = contact.getLastName();
-        person["phoneNumber"] = contact.getPhoneNumber();
-        person["email"] = contact.getEmail();
-        person["street"] = contact.getStreet();
-        person["city"] = contact.getCity();
-
-        jsonContacts.push_back(person);
-    }
+    nlohmann::ordered_json jsonContacts = nlohmann::ordered_json::array();
 
     std::ofstream file("contacts.json");
-
     if(file.fail()) {
         std::cout << "Error! File couldn't be opened." << std::endl;
         return;
+    }
+
+    for (const Contact& contact : m_contacts) {
+        json j;
+        AddressBook::to_json(j, contact);
+        jsonContacts.push_back(j);
     }
 
     file << jsonContacts.dump(4);
@@ -170,4 +161,14 @@ int AddressBook::getUserID(int contactSize) {
     } while (contactSize < 1 || temp > contactSize);
 
     return temp;
+}
+
+void AddressBook::to_json(nlohmann::ordered_json& j, const Contact& contact) {
+    j = nlohmann::ordered_json{ {"id", contact.getID()}, 
+            {"firstName", contact.getFirstName()}, 
+            {"lastName", contact.getLastName()}, 
+            {"phoneNumber", contact.getPhoneNumber()}, 
+            {"email", contact.getEmail()}, 
+            {"street", contact.getStreet()}, 
+            {"city", contact.getCity()} };
 }
