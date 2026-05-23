@@ -56,8 +56,7 @@ void AddressBook::createContact() {
 
 void AddressBook::editContact() {
     int editID;
-    int contactSize = m_contacts.size();
-    editID = AddressBook::getUserID(contactSize);
+    editID = AddressBook::getUserID(m_contacts.size());
 
     Contact contact = Contact::getContactDetailsFromUser();
     contact.setID(m_contacts[editID - 1].getID());
@@ -71,8 +70,7 @@ void AddressBook::deleteContact() {
     int deleteID;
     char YN;
     do {
-        std::cout << "Enter ID of contact you want to delete: ";
-        std::cin >> deleteID;
+        deleteID = AddressBook::getUserID(m_contacts.size());
 
         if (std::cin.fail()) {
             std::cin.clear();
@@ -85,7 +83,6 @@ void AddressBook::deleteContact() {
 
     bool deleteConfirmed = false;
 
-    std::cout << "Are you sure you want to delete? (Y/N): ";
     deleteConfirmed = Utils::confirmYesNo();
 
     if (deleteConfirmed) {

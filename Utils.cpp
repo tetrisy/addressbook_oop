@@ -2,6 +2,7 @@
 
 namespace Utils {
     std::string getUserInputLine() {
+        std::cout << "Are you sure you want to delete? (Y/N): ";
         std::string temp;
         std::getline(std::cin >> std::ws, temp);
 
