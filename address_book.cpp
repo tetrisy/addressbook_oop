@@ -8,31 +8,27 @@ int main() {
     AddressBook addressBook;
     std::ifstream contactsFile("contacts.json");
 
-     if(contactsFile.fail()) {
+    if (!addressBook.loadContacts(contactsFile)) {
         std::cout << "Error! File couldn't be opened." << std::endl;
-        return 1;
     }
 
-    if (!contactsFile.is_open()) {
-        std::cout << "No contacts to load." << std::endl;
-        return 2;
-    }
-
-    addressBook.loadContacts(contactsFile);
+    contactsFile.close();
 
     Menu menu(addressBook);
-    bool isWorking= true;
+    bool isWorking = true;
 
     while(isWorking) {
         menu.displayMenu();
         isWorking = menu.executeMenuOption();
     }
 
-    // if(addressBook.getWasContactChanged()) {
-    //     addressBook.saveContacts();
-    // }
+    if(addressBook.getWasContactChanged()) {
+        std::ofstream contactsFile("contacts.json");
+        if (!addressBook.saveContacts(contactsFile)) {
+            std::cout << "Error! File couldn't be opened." << std::endl;
+        }
+    }
 
-    addressBook.saveContacts();
 
     return 0;
 }

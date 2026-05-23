@@ -9,7 +9,11 @@
 
 using json = nlohmann::ordered_json;
 
-void AddressBook::loadContacts(std::istream& fileStream) {
+bool AddressBook::loadContacts(std::istream& fileStream) {
+
+    if(fileStream.fail()) {
+        return false;
+    }
 
     json jsonContacts;
     fileStream >> jsonContacts;
@@ -19,16 +23,14 @@ void AddressBook::loadContacts(std::istream& fileStream) {
         m_contacts.push_back(contact);
     }
 
-    std::cout << "Loaded " << m_contacts.size() << " contacts!" << std::endl << std::endl;
+    return true;
 }
 
-void AddressBook::saveContacts() {
+bool AddressBook::saveContacts(std::ostream& fileStream) {
     nlohmann::ordered_json jsonContacts = nlohmann::ordered_json::array();
 
-    std::ofstream file("contacts.json");
-    if(file.fail()) {
-        std::cout << "Error! File couldn't be opened." << std::endl;
-        return;
+    if(fileStream.fail()) {
+        return false;
     }
 
     for (const Contact& contact : m_contacts) {
@@ -37,7 +39,9 @@ void AddressBook::saveContacts() {
         jsonContacts.push_back(j);
     }
 
-    file << jsonContacts.dump(4);
+    fileStream << jsonContacts.dump(4);
+
+    return true;
 }
 
 void AddressBook::createContact() {

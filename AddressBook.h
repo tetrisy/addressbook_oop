@@ -13,8 +13,8 @@ class AddressBook {
         bool wasContactsChanged = false;
         
     public:
-        void loadContacts(std::istream& fileStream);
-        void saveContacts();
+        bool loadContacts(std::istream& fileStream);
+        bool saveContacts(std::ostream& fileStream);
         void createContact();
         void editContact();
         void deleteContact();
