@@ -9,21 +9,10 @@
 
 using json = nlohmann::ordered_json;
 
-void AddressBook::loadContacts() {
-    std::ifstream file ("contacts.json");
-
-    if(file.fail()) {
-        std::cout << "Error! File couldn't be opened." << std::endl;
-        return;
-    }
-
-    if (!file.is_open()) {
-        std::cout << "No contacts to load." << std::endl;
-        return;
-    }
+void AddressBook::loadContacts(std::istream& fileStream) {
 
     json jsonContacts;
-    file >> jsonContacts;
+    fileStream >> jsonContacts;
 
     for (const auto& person : jsonContacts) {
         Contact contact(person["id"], person["firstName"], person["lastName"], {person["phoneNumber"], person["email"], person["street"], person["city"]});
