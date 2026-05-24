@@ -28,6 +28,41 @@ bool Contact::emailValidation(const std::string& email) {
     }
 }
 
+void Contact::editDetails() {
+    std::string phoneNumber;
+    std::string email;
+
+    std::cout << "Enter first name: ";
+    setFirstName(Utils::getUserInputLine());
+    std::cout << "Enter last name: ";
+    setLastName(Utils::getUserInputLine());
+    do { 
+        std::cout << "Enter phone number: ";
+        phoneNumber = Utils::getUserInputLine();
+        if(Contact::phoneNumberValidation(phoneNumber)) {
+            setPhoneNumber(phoneNumber);
+            break;
+        } else {
+            std::cout << "Invalid phone number! Enter a valid phone number." << std::endl;
+        }
+    } while(true);
+    do {
+        std::cout << "Enter email: ";
+        email = Utils::getUserInputLine();
+        if(Contact::emailValidation(email)) {
+            setEmail(email);
+            break;
+        } else {
+            std::cout << "Invalid email! Enter a valid email address." << std::endl;
+        }
+    } while(true);
+    std::cout << "Enter street: ";
+    setStreet(Utils::getUserInputLine());
+    std::cout << "Enter city: ";
+    setCity(Utils::getUserInputLine());
+    std::cout << std::endl;
+}
+
 Contact Contact::getContactDetailsFromUser() {
     Contact contact;
     std::string phoneNumber;

@@ -22,7 +22,7 @@ int main() {
         isWorking = menu.executeMenuOption();
     }
 
-    if(addressBook.getWasContactChanged()) {
+    if(addressBook.getWasAnyContactChanged()) {
         std::ofstream contactsFile("contacts.json");
         if (!addressBook.saveContacts(contactsFile)) {
             std::cout << "Error! File couldn't be opened." << std::endl;

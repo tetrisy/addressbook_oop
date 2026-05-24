@@ -1,5 +1,6 @@
 #include "AddressBook.h"
 #include "Contact.h"
+#include "Display.h"
 #include "Utils.h"
 #include <nlohmann/json.hpp>
 #include <fstream>
@@ -45,11 +46,10 @@ bool AddressBook::saveContacts(std::ostream& fileStream) {
 }
 
 void AddressBook::createContact() {
-    std::cout << "==== Adding contact menu ====" << std::endl; 
     Contact contact = Contact::getContactDetailsFromUser();
     contact.setID(m_contacts.size() + 1);
 
-    wasContactsChanged = true;
+    wasAnyContactsChanged = true;
 
     m_contacts.push_back(contact);
 }
@@ -58,12 +58,11 @@ void AddressBook::editContact() {
     int editID;
     editID = AddressBook::getUserID(m_contacts.size());
 
-    Contact contact = Contact::getContactDetailsFromUser();
-    contact.setID(m_contacts[editID - 1].getID());
+    if(editID > 0 && editID <= m_contacts.size()) {
+        m_contacts[editID - 1].editDetails();
+    }
 
-    m_contacts[editID - 1] = contact; 
-
-    wasContactsChanged = true;
+    wasAnyContactsChanged = true;
 }
 
 void AddressBook::deleteContact() {
@@ -81,16 +80,12 @@ void AddressBook::deleteContact() {
 
     } while (deleteID < 1 || deleteID > m_contacts.size());
 
-    bool deleteConfirmed = false;
-
-    deleteConfirmed = Utils::confirmYesNo();
-
-    if (deleteConfirmed) {
+    if (Utils::confirmYesNo()) {
         std::cout << "Contact deleted!" << std::endl;
         m_contacts.erase(m_contacts.begin() + (deleteID - 1));
     }
 
-    wasContactsChanged = true;
+    wasAnyContactsChanged = true;
 }
 
 std::vector<int> AddressBook::searchContact() {
@@ -121,20 +116,11 @@ std::vector<int> AddressBook::searchContact() {
 
 void AddressBook::displayAllContacts() {
     for(const Contact& contact : m_contacts) {
-        AddressBook::displayContact(contact);
+        Display::displayContact(contact);
     }
 }
 
-void AddressBook::displayContact(const Contact& contact) {
-    std::cout << "=== Contact information ===" << std::endl;
-    std::cout << "ID: " << contact.getID() << std::endl;
-    std::cout << "First Name: " << contact.getFirstName() << std::endl;
-    std::cout << "Last Name: " << contact.getLastName() << std::endl;
-    std::cout << "Phone Number: " << contact.getPhoneNumber() << std::endl;
-    std::cout << "Email: " << contact.getEmail() << std::endl;
-    std::cout << "Street: " << contact.getStreet() << std::endl;
-    std::cout << "City: " << contact.getCity() << std::endl << std::endl;
-}
+
 
 int AddressBook::getUserID(int contactSize) {
     int temp;

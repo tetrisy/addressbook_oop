@@ -1,4 +1,5 @@
 #include "AddressBook.h"
+#include "Display.h"
 #include "Menu.h"
 #include <limits>
 #include <string>
@@ -16,17 +17,22 @@ void Menu::displayMenu() {
     std::cout << "0. Exit" << std::endl << std::endl;
 }
 
+void Menu::displayCreateContactMenu() {
+    std::cout << "==== Create contact menu ====" << std::endl;
+}
+
 bool Menu::executeMenuOption() {
     std::vector<int> foundContacts;
     std::vector<Contact> contacts = addressbook.getContacts();
     switch(Menu::getUserMenuChoice()) {
-        case 1:;
-            addressbook.createContact();;
+        case 1:
+            Menu::displayCreateContactMenu();
+            addressbook.createContact();
             break;
         case 2:
             addressbook.displayAllContacts();
             break;
-        case 3:;
+        case 3:
             addressbook.editContact();
             break;
         case 4:
@@ -35,7 +41,7 @@ bool Menu::executeMenuOption() {
         case 5:
             foundContacts = addressbook.searchContact();
             for (int id : foundContacts) {
-                addressbook.displayContact(contacts[id]);
+                Display::displayContact(contacts[id]);
             }
             break;
         case 0:

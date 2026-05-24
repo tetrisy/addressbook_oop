@@ -11,6 +11,7 @@ class Menu {
     public:
         Menu(AddressBook& book);
         void displayMenu();
+        void displayCreateContactMenu();
         bool executeMenuOption();
         int getUserMenuChoice();
 };

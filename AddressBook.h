@@ -10,7 +10,7 @@ using json = nlohmann::ordered_json;
 class AddressBook {
     private:
         std::vector<Contact> m_contacts;
-        bool wasContactsChanged = false;
+        bool wasAnyContactsChanged = false;
         
     public:
         bool loadContacts(std::istream& fileStream);
@@ -32,7 +32,7 @@ class AddressBook {
             m_contacts = contacts;
         }       
 
-        inline const bool& getWasContactChanged() {
-            return wasContactsChanged;
+        inline const bool& getWasAnyContactChanged() {
+            return wasAnyContactsChanged;
         }
 };
