@@ -80,7 +80,7 @@ void AddressBook::deleteContact() {
 
     } while (deleteID < 1 || deleteID > m_contacts.size());
 
-    if (Utils::confirmYesNo()) {
+    if (Utils::confirmDeletion()) {
         std::cout << "Contact deleted!" << std::endl;
         m_contacts.erase(m_contacts.begin() + (deleteID - 1));
     }

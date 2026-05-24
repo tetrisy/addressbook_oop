@@ -8,7 +8,7 @@ namespace Utils {
         return temp;
     }
 
-    bool confirmYesNo() {
+    bool confirmDeletion() {
         std::cout << "Are you sure you want to delete? (Y/N): ";
         char input;
         do {

@@ -5,7 +5,7 @@
 
 namespace Utils {
         std::string getUserInputLine();
-        bool confirmYesNo();
+        bool confirmDeletion();
 };
 
 namespace NSString {
