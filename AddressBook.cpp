@@ -123,20 +123,20 @@ void AddressBook::displayAllContacts() {
 
 
 int AddressBook::getUserID(int contactSize) {
-    int temp;
+    int id;
 
     do {
         std::cout << "Enter ID of contact: ";
-        std::cin >> temp;
+        std::cin >> id;
 
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Invalid input! Please enter a number." << std::endl;
         }
-    } while (contactSize < 1 || temp > contactSize);
+    } while (contactSize < 1 || id > contactSize);
 
-    return temp;
+    return id;
 }
 
 void AddressBook::to_json(nlohmann::ordered_json& j, const Contact& contact) {
