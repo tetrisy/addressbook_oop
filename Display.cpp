@@ -11,3 +11,24 @@ void Display::displayContact(const Contact& contact) {
     std::cout << "Street: " << contact.getStreet() << std::endl;
     std::cout << "City: " << contact.getCity() << std::endl << std::endl;
 };
+
+void Display::displayInvalidInputNotNumber() {
+    std::cout << "Invalid input! Please enter a number." << std::endl;
+}
+
+void Display::displayDeletionConfirmation() {
+    std::cout << "Contact deleted!" << std::endl;
+}
+
+void Display::promptForNameOrNumber() {
+    std::cout << "Enter name or phone number to search: ";
+}
+
+void Display::displayNothingFound() {
+    std::cout << "Nothing found." << std::endl;
+}
+
+void Display::displayHowManyFound(int amount) {
+    std::cout << std::endl << "Found " << amount << " contacts." << std::endl << std::endl;
+
+}

@@ -54,7 +54,7 @@ void AddressBook::createContact() {
 
 void AddressBook::editContact() {
     int editID;
-    editID = AddressBook::getUserID(m_contacts.size());
+    editID = Utils::getUserID(m_contacts.size());
 
     if(editID > 0 && editID <= m_contacts.size()) {
         m_contacts[editID - 1].editDetails();
@@ -67,7 +67,7 @@ void AddressBook::deleteContact() {
     int deleteID;
     char YN;
     do {
-        deleteID = AddressBook::getUserID(m_contacts.size());
+        deleteID = Utils::getUserID(m_contacts.size());
 
         if (std::cin.fail()) {
             std::cin.clear();
@@ -79,7 +79,7 @@ void AddressBook::deleteContact() {
     } while (deleteID < 1 || deleteID > m_contacts.size());
 
     if (Utils::confirmDeletion()) {
-        std::cout << "Contact deleted!" << std::endl;
+        Display::displayDeletionConfirmation();
         m_contacts.erase(m_contacts.begin() + (deleteID - 1));
     }
 
@@ -88,7 +88,7 @@ void AddressBook::deleteContact() {
 
 std::vector<int> AddressBook::searchContact() {
     std::string phrase;
-    std::cout << "Enter name or phone number to search: ";
+    Display::promptForNameOrNumber();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     getline(std::cin, phrase);
 
@@ -104,10 +104,10 @@ std::vector<int> AddressBook::searchContact() {
     }
 
     if (found.empty()) {
-        std::cout << "Nothing found." << std::endl;
+        Display::displayNothingFound();
+    } else {
+        Display::displayHowManyFound(found.size());
     }
-
-    std::cout << std::endl << "Found " << found.size() << " contacts." << std::endl << std::endl;
 
     return found;
 }
@@ -118,21 +118,5 @@ void AddressBook::displayAllContacts() {
     }
 }
 
-int AddressBook::getUserID(int contactSize) {
-    int id;
-
-    do {
-        std::cout << "Enter ID of contact: ";
-        std::cin >> id;
-
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input! Please enter a number." << std::endl;
-        }
-    } while (contactSize < 1 || id > contactSize);
-
-    return id;
-}
 
 

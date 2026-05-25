@@ -8,6 +8,24 @@ namespace Utils {
         return temp;
     }
 
+    int getUserID(int contactSize) {
+    int id;
+
+    do {
+        std::cout << "Enter ID of contact: ";
+        std::cin >> id;
+
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter a number." << std::endl;
+        }
+    } while (contactSize < 1 || id > contactSize);
+
+    return id;
+}
+
+
     bool confirmDeletion() {
         std::cout << "Are you sure you want to delete? (Y/N): ";
         char input;
