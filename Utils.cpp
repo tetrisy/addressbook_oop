@@ -17,6 +17,19 @@ namespace Utils {
 
         return input == 'Y';
     }
+
+    nlohmann::ordered_json to_json(const Contact& contact) {
+        nlohmann::ordered_json j = nlohmann::ordered_json{
+            {"id", contact.getID()},
+            {"firstName", contact.getFirstName()},
+            {"lastName", contact.getLastName()},
+            {"phoneNumber", contact.getPhoneNumber()},
+            {"email", contact.getEmail()},
+            {"street", contact.getStreet()},
+            {"city", contact.getCity()}
+        };
+        return j;
+    }
 }
 
 namespace NSString {

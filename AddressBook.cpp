@@ -2,7 +2,6 @@
 #include "Contact.h"
 #include "Display.h"
 #include "Utils.h"
-#include <nlohmann/json.hpp>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -35,8 +34,7 @@ bool AddressBook::saveContacts(std::ostream& fileStream) {
     }
 
     for (const Contact& contact : m_contacts) {
-        json j;
-        AddressBook::to_json(j, contact);
+        nlohmann::ordered_json j = Utils::to_json(contact);
         jsonContacts.push_back(j);
     }
 
@@ -74,7 +72,7 @@ void AddressBook::deleteContact() {
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input! Please enter a number." << std::endl;
+            Display::displayInvalidInputNotNumber();
             deleteID = -1;
         }
 
@@ -120,8 +118,6 @@ void AddressBook::displayAllContacts() {
     }
 }
 
-
-
 int AddressBook::getUserID(int contactSize) {
     int id;
 
@@ -139,12 +135,4 @@ int AddressBook::getUserID(int contactSize) {
     return id;
 }
 
-void AddressBook::to_json(nlohmann::ordered_json& j, const Contact& contact) {
-    j = nlohmann::ordered_json{ {"id", contact.getID()}, 
-            {"firstName", contact.getFirstName()}, 
-            {"lastName", contact.getLastName()}, 
-            {"phoneNumber", contact.getPhoneNumber()}, 
-            {"email", contact.getEmail()}, 
-            {"street", contact.getStreet()}, 
-            {"city", contact.getCity()} };
-}
+
