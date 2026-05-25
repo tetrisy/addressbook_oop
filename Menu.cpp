@@ -62,8 +62,8 @@ int Menu::getUserMenuChoice() {
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            choice = -1;
             std::cout << "Invalid input! Please enter a number." << std::endl;
-            continue;
         }
     } while (choice < 0 || choice > 5);
     std::cout << std::endl;
