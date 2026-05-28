@@ -1,6 +1,7 @@
 #include "AddressBook.h"
 #include "Contact.h"
 #include "Menu.h"
+#include "JsonAddressBookLoader.h"
 #include <fstream>
 #include <iostream>
 
@@ -8,11 +9,14 @@ int main() {
     AddressBook addressBook;
     std::ifstream contactsFile("contacts.json");
 
-    if (!addressBook.loadContacts(contactsFile)) {
-        std::cout << "Error! File couldn't be opened." << std::endl;
-    }
+    JsonAddressBookLoader jsonLoader;
+    addressBook.loadContacts(jsonLoader, contactsFile);
 
-    contactsFile.close();
+    // if (!addressBook.loadContacts(contactsFile)) {
+    //     std::cout << "Error! File couldn't be opened." << std::endl;
+    // }
+    
+    // contactsFile.close();
 
     Menu menu(addressBook);
     bool isWorking = true;

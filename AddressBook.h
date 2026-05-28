@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Contact.h"
+#include "IAddressBookLoader.h"
 #include <nlohmann/json.hpp>
 #include <vector>
 #include <iostream>
@@ -13,7 +14,7 @@ class AddressBook {
         bool wasAnyContactsChanged = false;
         
     public:
-        bool loadContacts(std::istream& fileStream);
+        void loadContacts(IAddressBookLoader& load, std::istream& fileStream);
         bool saveContacts(std::ostream& fileStream);
         void createContact();
         void editContact();
