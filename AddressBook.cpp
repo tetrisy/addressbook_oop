@@ -12,22 +12,6 @@ using json = nlohmann::ordered_json;
 void AddressBook::loadContacts(IAddressBookLoader& load, std::istream& fileStream) {
 
     m_contacts = load.loadContacts(fileStream);
-
-    // m_contacts = AddressBookFilesManager::loadContactsFromFile();
-
-    // if(fileStream.fail()) {
-    //     return false;
-    // }
-
-    // json jsonContacts;
-    // fileStream >> jsonContacts;
-
-    // for (const auto& person : jsonContacts) {
-    //     Contact contact(person["id"], person["firstName"], person["lastName"], {person["phoneNumber"], person["email"], person["street"], person["city"]});
-    //     m_contacts.push_back(contact);
-    // }
-
-    // return true;
 }
 
 bool AddressBook::saveContacts(std::ostream& fileStream) {

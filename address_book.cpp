@@ -11,13 +11,7 @@ int main() {
 
     JsonAddressBookLoader jsonLoader;
     addressBook.loadContacts(jsonLoader, contactsFile);
-
-    // if (!addressBook.loadContacts(contactsFile)) {
-    //     std::cout << "Error! File couldn't be opened." << std::endl;
-    // }
     
-    // contactsFile.close();
-
     Menu menu(addressBook);
     bool isWorking = true;
 
