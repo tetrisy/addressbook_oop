@@ -1,17 +1,10 @@
 #include "AddressBook.h"
-#include "Contact.h"
-#include "Display.h"
-#include "Utils.h"
-#include <fstream>
-#include <string>
-#include <vector>
-#include <iostream>
 
 using json = nlohmann::ordered_json;
 
-void AddressBook::loadContacts(IAddressBookLoader& load, std::istream& fileStream) {
+void AddressBook::loadContacts(IAddressBookLoader& load) {
 
-    m_contacts = load.loadContacts(fileStream);
+    m_contacts = load.loadContacts();
 }
 
 bool AddressBook::saveContacts(std::ostream& fileStream) {

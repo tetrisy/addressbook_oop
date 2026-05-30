@@ -8,5 +8,5 @@ using json = nlohmann::ordered_json;
 
 class JsonAddressBookLoader : public IAddressBookLoader {
 public:
-    std::vector<Contact> loadContacts(std::istream& fileStream) override;
+    std::vector<Contact> loadContacts() override;
 };

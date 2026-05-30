@@ -7,10 +7,9 @@
 
 int main() {
     AddressBook addressBook;
-    std::ifstream contactsFile("contacts.json");
 
     JsonAddressBookLoader jsonLoader;
-    addressBook.loadContacts(jsonLoader, contactsFile);
+    addressBook.loadContacts(jsonLoader);
     
     Menu menu(addressBook);
     bool isWorking = true;

@@ -5,5 +5,5 @@
 
 class IAddressBookLoader {
 public:
-    virtual std::vector<Contact> loadContacts(std::istream& fileStream) = 0;    
+    virtual std::vector<Contact> loadContacts() = 0;    
 };

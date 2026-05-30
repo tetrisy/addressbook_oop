@@ -1,5 +1,4 @@
 #include "Display.h"
-#include <iostream>
 
 void Display::displayContact(const Contact& contact) {
     std::cout << "=== Contact information ===" << std::endl;
