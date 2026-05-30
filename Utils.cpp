@@ -36,6 +36,10 @@ namespace Utils {
         return input == 'Y';
     }
 
+    
+};
+
+namespace JsonTools {
     nlohmann::ordered_json to_json(const Contact& contact) {
         nlohmann::ordered_json j = nlohmann::ordered_json{
             {"id", contact.getID()},
@@ -48,7 +52,7 @@ namespace Utils {
         };
         return j;
     }
-}
+};
 
 namespace NSString {
     std::string toLower(std::string phrase) {
@@ -58,7 +62,7 @@ namespace NSString {
 
         return phrase;
     }
-}
+};
 
 
 

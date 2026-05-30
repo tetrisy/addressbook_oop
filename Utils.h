@@ -8,8 +8,11 @@ namespace Utils {
     std::string getUserInputLine();
     int getUserID(int contactSize);
     bool confirmDeletion();
-    nlohmann::ordered_json to_json(const Contact& contact);
 };
+
+namespace JsonTools {
+    nlohmann::ordered_json to_json(const Contact& contact);
+}
 
 namespace NSString {
     std::string toLower(std::string phrase);

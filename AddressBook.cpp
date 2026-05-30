@@ -15,7 +15,7 @@ bool AddressBook::saveContacts(std::ostream& fileStream) {
     }
 
     for (const Contact& contact : m_contacts) {
-        nlohmann::ordered_json j = Utils::to_json(contact);
+        nlohmann::ordered_json j = JsonTools::to_json(contact);
         jsonContacts.push_back(j);
     }
 
