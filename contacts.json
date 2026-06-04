@@ -61,14 +61,5 @@
         "email": "moczka@gmail.com",
         "street": "Polna",
         "city": "Poznan"
-    },
-    {
-        "id": 8,
-        "firstName": "Aga",
-        "lastName": "Maga",
-        "phoneNumber": "333333333",
-        "email": "maga@gmail.com",
-        "street": "Monopolyy",
-        "city": "Poznan"
     }
 ]

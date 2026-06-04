@@ -7,21 +7,9 @@ void AddressBook::loadContacts(IAddressBookLoader& load) {
     m_contacts = load.loadContacts();
 }
 
-bool AddressBook::saveContacts(std::ostream& fileStream) {
-    nlohmann::ordered_json jsonContacts = nlohmann::ordered_json::array();
-
-    if(fileStream.fail()) {
-        return false;
-    }
-
-    for (const Contact& contact : m_contacts) {
-        nlohmann::ordered_json j = JsonTools::to_json(contact);
-        jsonContacts.push_back(j);
-    }
-
-    fileStream << jsonContacts.dump(4);
-
-    return true;
+bool AddressBook::saveContacts(IAddressBookSaver& save) {
+    
+   return save.saveContacts(m_contacts);
 }
 
 void AddressBook::createContact() {
