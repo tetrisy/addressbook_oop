@@ -61,5 +61,14 @@
         "email": "moczka@gmail.com",
         "street": "Polna",
         "city": "Poznan"
+    },
+    {
+        "id": 8,
+        "firstName": "Anna",
+        "lastName": "Majorska",
+        "phoneNumber": "777222888",
+        "email": "majorka@gmail.com",
+        "street": "Mocna",
+        "city": "Wadowice"
     }
 ]

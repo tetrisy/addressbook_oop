@@ -5,5 +5,5 @@
 
 class IAddressBookLoader {
 public:
-    virtual std::vector<Contact> loadContacts() = 0;    
+    virtual std::vector<Contact> loadContacts(const std::string& fileName) = 0;    
 };

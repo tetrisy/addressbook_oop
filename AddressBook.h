@@ -19,8 +19,8 @@ class AddressBook {
         bool wasAnyContactsChanged = false;
         
     public:
-        void loadContacts(IAddressBookLoader& load);
-        bool saveContacts(IAddressBookSaver& save);
+        void loadContacts(IAddressBookLoader& load, const std::string& fileName);
+        bool saveContacts(IAddressBookSaver& save, const std::string& fileName);
         void createContact();
         void editContact();
         void deleteContact();

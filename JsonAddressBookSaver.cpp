@@ -1,7 +1,7 @@
 #include "JsonAddressBookSaver.h"
 
-bool JsonAddressBookSaver::saveContacts(const std::vector<Contact>& contacts) {
-    std::ofstream jsonFile("contacts.json");
+bool JsonAddressBookSaver::saveContacts(const std::vector<Contact>& contacts, const std::string& fileName) {
+    std::ofstream jsonFile(fileName);
 
     nlohmann::ordered_json jsonContacts = nlohmann::ordered_json::array();
 

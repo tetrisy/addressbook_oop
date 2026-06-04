@@ -2,14 +2,14 @@
 
 using json = nlohmann::ordered_json;
 
-void AddressBook::loadContacts(IAddressBookLoader& load) {
+void AddressBook::loadContacts(IAddressBookLoader& load, const std::string& fileName) {
 
-    m_contacts = load.loadContacts();
+    m_contacts = load.loadContacts(fileName);
 }
 
-bool AddressBook::saveContacts(IAddressBookSaver& save) {
+bool AddressBook::saveContacts(IAddressBookSaver& save, const std::string& fileName) {
     
-   return save.saveContacts(m_contacts);
+   return save.saveContacts(m_contacts, fileName);
 }
 
 void AddressBook::createContact() {

@@ -11,5 +11,5 @@ using json = nlohmann::ordered_json;
 
 class JsonAddressBookSaver : public IAddressBookSaver {
 public:
-    bool saveContacts(const std::vector<Contact>& contacts) override;
+    bool saveContacts(const std::vector<Contact>& contacts, const std::string& fileName) override;
 };

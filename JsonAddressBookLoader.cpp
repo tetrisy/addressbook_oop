@@ -1,7 +1,7 @@
 #include "JsonAddressBookLoader.h"
 
-std::vector<Contact> JsonAddressBookLoader::loadContacts() {
-    std::ifstream jsonFile("contacts.json");
+std::vector<Contact> JsonAddressBookLoader::loadContacts(const std::string& fileName) {
+    std::ifstream jsonFile(fileName);
 
     if(!jsonFile) return {};
     
