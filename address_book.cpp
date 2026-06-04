@@ -2,6 +2,7 @@
 #include "Contact.h"
 #include "Menu.h"
 #include "JsonAddressBookLoader.h"
+#include "JsonAddressBookSaver.h"
 #include <fstream>
 #include <iostream>
 
@@ -19,9 +20,11 @@ int main() {
         isWorking = menu.executeMenuOption();
     }
 
+    JsonAddressBookSaver jsonSaver;
+
     if(addressBook.getWasAnyContactChanged()) {
         std::ofstream contactsFile("contacts.json");
-        if (!addressBook.saveContacts(contactsFile)) {
+        if (!addressBook.saveContacts(jsonSaver)) {
             std::cout << "Error! File couldn't be opened." << std::endl;
         }
     }

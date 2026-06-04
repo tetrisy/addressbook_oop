@@ -3,6 +3,7 @@
 #include "Contact.h"
 #include "Display.h"
 #include "IAddressBookLoader.h"
+#include "IAddressBookSaver.h"
 #include "Utils.h"
 #include <fstream>
 #include <nlohmann/json.hpp>
@@ -19,7 +20,7 @@ class AddressBook {
         
     public:
         void loadContacts(IAddressBookLoader& load);
-        bool saveContacts(std::ostream& fileStream);
+        bool saveContacts(IAddressBookSaver& save);
         void createContact();
         void editContact();
         void deleteContact();
